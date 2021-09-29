@@ -1,5 +1,5 @@
-baseURL = 'https://bugitt.github.io/ns-labs/'
-title = 'Network Storage Labs'
+baseURL = 'https://buaa-se-2021.github.io/os-labs/'
+title = 'OS Pintos Labs'
 theme = 'book'
 
 # Book configuration
@@ -28,7 +28,7 @@ enableGitInfo = true
 # [[menu.before]]
 [[menu.after]]
   name = "Github"
-  url = "https://github.com/bugitt/ns-labs"
+  url = "https://github.com/BUAA-SE-2021/os-labs"
   weight = 10
 
 [params]
