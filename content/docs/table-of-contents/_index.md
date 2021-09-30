@@ -4,7 +4,7 @@ weight: 10
 
 # 你好，操作系统！
 
-Hello, PintoS!
+Hello, Pintos!
 
 # 目录
 
