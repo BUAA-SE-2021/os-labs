@@ -9,7 +9,7 @@ type: docs
 
 实验来自[CS 140: Operating Systems (Spring 2020)](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/index.php)，包含以下若干个 Projects：
 
-- [x] [Problem Set 0: Synchronization](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/problemSet0.php) 单人，必做，10 月 14 日 22：00 前提交
+- [x] [Problem Set 0: Synchronization](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/problemSet0.php) 单人，必做，10 月 14 日 23：00 前提交
 - [x] [Project 1: Threads](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，暂定 11 月 7 日 22：00 前提交
 - [x] [Project 2: User Programs](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，暂定 11 月 28 日 22：00 前提交
 - [ ] [Project 3: Virtual Memory](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，选做，暂定 12 月 5 日 22：00 前提交
@@ -17,9 +17,13 @@ type: docs
 
 ### Problem Set 0: Synchronization
 
+> 关于进程间同步的练习
+
 Note: this problem set should be done individually, not in teams. The teams will apply to the four Pintos projects. For this problem set it is OK to discuss general strategy with other people, and it's OK to give and receive help tracking down problems, but you must write your own code.
 
 ### Project 1: Threads
+
+> 进程管理
 
 See the Pintos documentation for details on this project:
 
@@ -33,6 +37,8 @@ Additional notes and modifications for Project 1:
 
 ### Projects 2: User Programs
 
+> 处理系统调用
+
 See the Pintos documentation for details on this project:
 
 - [Assignment](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintos/pintos_3.html)
@@ -40,6 +46,8 @@ See the Pintos documentation for details on this project:
 - [Template for design document](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintos/userprog.tmpl)
 
 ### Project 3: Virtual Memory
+
+> 虚拟内存
 
 See the Pintos documentation for details on this project:
 
@@ -49,9 +57,20 @@ See the Pintos documentation for details on this project:
 
 ## 提交方式和内容
 
+所有实验均以小组形式提交，其中 Problem Set 0 需个人单独完成，组长收齐后提交。
+
+每个实验需提交代码和中文实验文档。
+
+- [必做] 官方所给的 Design Document、过点的情况
+- [可选] 测试报告、踩坑记录、Debug 的解决方案、实验心得体会、你认为有意义的任何内容
+
 我们会提供 Markdown 模板和需要提交文件的参考目录结构，请在完成实验后将所有需要提交的文件压缩成 Zip 包上传至北航软件学院云平台。命名方式和具体提交内容见各实验的详细说明。
 
-每周需要通过周例会的形式记录小组内的组织进度安排，周例会需要写一份报告，以小组为单位，每周提交至云平台上。
+另外，每周需要通过周例会的形式记录小组内的组织进度安排，周例会需要写一份报告，同样以小组为单位。从第五周上机课开始，每周四晚 23 时前提交至云平台上。
+
+**注意：**
+
+请务必在实验截止前 1-2 个小时便提交作业，如云平台有故障，联系助教，不接受任何形式的作业补交。
 
 ## 评分说明
 
