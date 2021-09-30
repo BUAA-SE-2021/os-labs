@@ -1,1 +1,0 @@
-navigator.serviceWorker&&navigator.serviceWorker.register("/os-labs/sw.js",{scope:"/os-labs/"})
