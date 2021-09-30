@@ -7,7 +7,7 @@ type: docs
 
 ## 总体设计
 
-实验来自[CS 140: Operating Systems (Spring 2020)](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/index.php)，包含以下若干个Projects：
+实验来自[CS 140: Operating Systems (Spring 2020)](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/index.php)，包含以下若干个 Projects：
 
 - [x] [Problem Set 0: Synchronization](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/problemSet0.php) 单人，必做，10 月 14 日 22：00 前提交
 - [x] [Project 1: Threads](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，暂定 11 月 7 日 22：00 前提交
@@ -53,9 +53,22 @@ See the Pintos documentation for details on this project:
 
 每周需要通过周例会的形式记录小组内的组织进度安排，周例会需要写一份报告，以小组为单位，每周提交至云平台上。
 
+## 评分说明
+
+实验内容占总成绩的 40%，实验课上机时会有签到，每次实验后会有验收答辩。
+
+分数占比：
+
+- 签到：10 分
+- 考试：50 分
+- Pintos 实验：40 分
+  - Problem Set 0：5 分
+  - Project 1：15 分
+  - Project 2：20 分
+  - Project 3：附加 5 分
+
 ## 助教联系方式
 
 - 朱英豪（微信 zhuyinghao）
 - 康曦文（微信 kxw009988）
 - 杨智茹（QQ 1270367357）
-
