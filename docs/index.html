@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Pintos 实验规划 #  总体设计 #  实验来自 CS 140: Operating Systems (Spring 2020)，包含以下若干个 Projects：
- Problem Set 0: Synchronization 单人，必做，10 月 14 日 23：00 前提交 Project 1: Threads 组队，必做，暂定 11 月 7 日 22：00 前提交 Project 2: User Programs 组队，必做，暂定 11 月 28 日 22：00 前提交 Project 3: Virtual Memory 组队，选做，暂定 12 月 5 日 22：00 前提交 Project 4: File Systems 没要求  Problem Set 0: Synchronization #   关于进程间同步的练习">
+ Problem Set 0: Synchronization 单人，必做，10 月 14 日 23：00 前提交 Project 1: Threads 组队，必做，暂定 11 月 7 日 23：00 前提交 Project 2: User Programs 组队，必做，暂定 11 月 28 日 23：00 前提交 Project 3: Virtual Memory 组队，选做，暂定 12 月 5 日 23：00 前提交 Project 4: File Systems 没要求  Problem Set 0: Synchronization #   关于进程间同步的练习">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Pintos 实验规划" />
 <meta property="og:description" content="" />
@@ -210,7 +210,7 @@ https://github.com/alex-shpak/hugo-book
           <ul>
             <li><a href="#problem-set-0-synchronization">Problem Set 0: Synchronization</a></li>
             <li><a href="#project-1-threads">Project 1: Threads</a></li>
-            <li><a href="#projects-2-user-programs">Projects 2: User Programs</a></li>
+            <li><a href="#project-2-user-programs">Project 2: User Programs</a></li>
             <li><a href="#project-3-virtual-memory">Project 3: Virtual Memory</a></li>
           </ul>
         </li>
@@ -246,11 +246,11 @@ https://github.com/alex-shpak/hugo-book
 <li><input checked="" disabled="" type="checkbox"> 
   <a href="http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/problemSet0.php">Problem Set 0: Synchronization</a> 单人，必做，10 月 14 日 23：00 前提交</li>
 <li><input checked="" disabled="" type="checkbox"> 
-  <a href="http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php">Project 1: Threads</a> 组队，必做，暂定 11 月 7 日 22：00 前提交</li>
+  <a href="http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php">Project 1: Threads</a> 组队，必做，暂定 11 月 7 日 23：00 前提交</li>
 <li><input checked="" disabled="" type="checkbox"> 
-  <a href="http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php">Project 2: User Programs</a> 组队，必做，暂定 11 月 28 日 22：00 前提交</li>
+  <a href="http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php">Project 2: User Programs</a> 组队，必做，暂定 11 月 28 日 23：00 前提交</li>
 <li><input disabled="" type="checkbox"> 
-  <a href="http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php">Project 3: Virtual Memory</a> 组队，选做，暂定 12 月 5 日 22：00 前提交</li>
+  <a href="http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php">Project 3: Virtual Memory</a> 组队，选做，暂定 12 月 5 日 23：00 前提交</li>
 <li><input disabled="" type="checkbox"> 
   <a href="http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php">Project 4: File Systems</a> 没要求</li>
 </ul>
@@ -282,9 +282,9 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li>A common mistake students make throughout the Pintos projects is to use <code>malloc</code> carelessly. If you call <code>malloc</code>, you must check the result to make sure the system did not run out of memory (and you must do something reasonable if memory does run out). In addition, you must be sure that any memory you allocate is eventually freed.</li>
 </ul>
-<h3 id="projects-2-user-programs">
-  Projects 2: User Programs
-  <a class="anchor" href="#projects-2-user-programs">#</a>
+<h3 id="project-2-user-programs">
+  Project 2: User Programs
+  <a class="anchor" href="#project-2-user-programs">#</a>
 </h3>
 <blockquote>
 <p>处理系统调用</p>
@@ -374,7 +374,7 @@ https://github.com/alex-shpak/hugo-book
   <div class="flex flex-wrap justify-between">
 
 
-  <div><a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/commit/f88ac83474faa2d80f86dec88ef8e7baa3c79a75" title='Last modified by Yinghao Zhu | September 30, 2021' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/commit/ee7201fdf4fa906adb44486979e7ea96aff63e94" title='Last modified by Yinghao Zhu | September 30, 2021' target="_blank" rel="noopener">
       <img src="/os-labs/svg/calendar.svg" class="book-icon" alt="Calendar" />
       <span>September 30, 2021</span>
     </a>
@@ -425,7 +425,7 @@ https://github.com/alex-shpak/hugo-book
           <ul>
             <li><a href="#problem-set-0-synchronization">Problem Set 0: Synchronization</a></li>
             <li><a href="#project-1-threads">Project 1: Threads</a></li>
-            <li><a href="#projects-2-user-programs">Projects 2: User Programs</a></li>
+            <li><a href="#project-2-user-programs">Project 2: User Programs</a></li>
             <li><a href="#project-3-virtual-memory">Project 3: Virtual Memory</a></li>
           </ul>
         </li>
