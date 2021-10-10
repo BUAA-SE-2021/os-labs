@@ -62,7 +62,7 @@ See the Pintos documentation for details on this project:
 每个实验需提交代码（需要提供必要的中文代码注释）和中文实验文档。
 
 - [必做] 官方所给的 Design Document、过点的情况
-- [可选] 设计方案（算法描述、数据结构）、踩坑记录、Debug 的解决方案、实验心得体会、用户手册、测试报告、你认为有意义的任何内容
+- [可选，视程度加分] 设计方案（算法描述、数据结构）、踩坑记录、Debug 的解决方案、实验心得体会、用户手册、测试报告、你认为有意义的任何内容
 
 我们会提供 Markdown 模板和需要提交文件的参考目录结构，请在完成实验后将所有需要提交的文件压缩成 Zip 包上传至北航软件学院云平台。命名方式和具体提交内容见各实验的详细说明。
 
@@ -98,3 +98,18 @@ See the Pintos documentation for details on this project:
 - 朱英豪（微信 zhuyinghao）
 - 康曦文（微信 kxw009988）
 - 杨智茹（QQ 1270367357）
+
+## 诚信说明
+
+实验代码和报告将严格查重，如发现抄袭，以零分处理。不允许参考他人的Pintos实现（读开源项目如 Linux、FreeBSD 等的源码是鼓励的，但同样不允许抄袭，如它们有哪部分的实现启发了你，请在实验文档中引用注明），请务必独立完成每次实验。
+
+附 Stanford 的 Honor Code 的说明：
+
+As in all Stanford classes, you are expected to follow the Stanford Honor Code. For example, the following activities are prohibited and will be treated as Honor Code violations (this is not intended to be a complete list of Honor Code violations):
+
+Submitting code that you did not write personally, with the exception of project code written by your partner(s).
+Consulting pre-existing solutions for problem sets and projects (such as solutions posted on the Internet).
+Posting your solutions on the Internet or making them available to other students in any form.
+You are allowed to discuss general approaches and issues with other students in the class besides your team members. It's also fine to give other students help finding bugs if they are stuck, or to answer general questions, such as "what is the meaning of this bit in a page table entry?" But, any code you write must be written by you and your team members, from scratch, without consulting existing solutions. We reserve the right to use computer software such as MOSS to analyze material that you submit in order to detect duplication with other students or existing solutions.
+
+A general way to think about this is that if a particular activity significantly short-circuits the learning process (it saves you time but reduces the amount you learn and/or figure out on your own), or if it misrepresents your capabilities or accomplishments, then it is probably an Honor Code violation.
