@@ -3,30 +3,26 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Pintos 环境搭建 #   Author: Muyung, YinghaoZhu
- 依赖安装 #  我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04
+ 依赖安装 #  我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04 64 位版本（32 位版本不可以）。
   Download VMware Workstation 16 Player  Download Ubuntu 16.04  选择 ubuntu-16.04.7-desktop-amd64.iso    安装 GNU binutils #  安装成功后，终端运行 i386-elf-objdump -i，应输出：
 BFD header file version (GNU Binutils) 2.21.1 elf32-i386 (header little endian, data little endian) i386... 如果未出现这一信息，则需要安装 binutils ：
-首先下载该依赖包：终端执行 wget http://ftpmirror.gnu.org/binutils/binutils-2.21.1.tar.bz2
-解压并安装：
-tar xjf binutils-2.">
+首先下载该依赖包：终端执行 wget http://ftpmirror.gnu.org/binutils/binutils-2.21.1.tar.bz2">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Pintos 环境搭建">
 <meta property="og:description" content="Pintos 环境搭建 #   Author: Muyung, YinghaoZhu
- 依赖安装 #  我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04
+ 依赖安装 #  我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04 64 位版本（32 位版本不可以）。
   Download VMware Workstation 16 Player  Download Ubuntu 16.04  选择 ubuntu-16.04.7-desktop-amd64.iso    安装 GNU binutils #  安装成功后，终端运行 i386-elf-objdump -i，应输出：
 BFD header file version (GNU Binutils) 2.21.1 elf32-i386 (header little endian, data little endian) i386... 如果未出现这一信息，则需要安装 binutils ：
-首先下载该依赖包：终端执行 wget http://ftpmirror.gnu.org/binutils/binutils-2.21.1.tar.bz2
-解压并安装：
-tar xjf binutils-2.">
+首先下载该依赖包：终端执行 wget http://ftpmirror.gnu.org/binutils/binutils-2.21.1.tar.bz2">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/resources/install-pintos/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2021-09-30T16:56:59+08:00">
+<meta property="article:modified_time" content="2021-10-11T21:03:01+08:00">
 <title>Pintos 环境搭建 | OS Pintos Labs</title>
 <link rel=manifest href=/os-labs/manifest.json>
 <link rel=icon href=/os-labs/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/os-labs/flexsearch.min.js></script>
-<script defer src=/os-labs/en.search.min.3f1311c175e8f2a8d5cb51586ece9f65b2288597855dbdf9e75fdbe893ede58b.js integrity="sha256-PxMRwXXo8qjVy1FYbs6fZbIohZeFXb3551/b6JPt5Ys=" crossorigin=anonymous></script>
+<script defer src=/os-labs/en.search.min.e6a8372ba6273616979b81721b87fddae153335539f30495b3778eef0608a489.js integrity="sha256-5qg3K6YnNhaXm4FyG4f92uFTM1U58wSVs3eO7wYIpIk=" crossorigin=anonymous></script>
 <script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -124,7 +120,7 @@ Pintos 环境搭建
 依赖安装
 <a class=anchor href=#%e4%be%9d%e8%b5%96%e5%ae%89%e8%a3%85>#</a>
 </h2>
-<p>我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04</p>
+<p>我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04 <strong>64 位版本</strong>（32 位版本不可以）。</p>
 <ul>
 <li>
 <a href=https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html>Download VMware Workstation 16 Player</a></li>
@@ -302,9 +298,9 @@ Execution of <span style=color:#e6db74>&#39;alarm-multiple&#39;</span> complete.
 </code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/efcd2d05e371cd648b85724ea296277ed7f0f70f title="Last modified by Yinghao Zhu | September 30, 2021" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/07da6c5a1b4b5df222e878a8723f25f428385030 title="Last modified by Yinghao Zhu | October 11, 2021" target=_blank rel=noopener>
 <img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
-<span>September 30, 2021</span>
+<span>October 11, 2021</span>
 </a>
 </div>
 <div>
