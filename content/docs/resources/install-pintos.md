@@ -9,7 +9,7 @@ weight: 2
 
 ## 依赖安装
 
-我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04
+我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04 **64 位版本**（32 位版本不可以）。
 
 - [Download VMware Workstation 16 Player](https://www.vmware.com/cn/products/workstation-player/workstation-player-evaluation.html)
 - [Download Ubuntu 16.04](http://releases.ubuntu.com/xenial/)
