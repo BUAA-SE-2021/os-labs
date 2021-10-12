@@ -2,19 +2,19 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Problem Set 0 #  实验说明 #   单人完成，代码要求每人一份。由组长收齐后，将每个人的提交内容放在各自的文件夹后打包为 Zip 包提交。 提交内容可不限于代码，设计文档、解决思路等都欢迎提交。若提交文档，请仅提交一个 PDF （可用 PDF 合并方法，也可写在一个 Markdown/LaTex 项目里）。注意这一项是选做的，没有对文档有要求。 本次实验因为不涉及多人合作，故对 Git 的使用没有要求。此后的 Project 1 开始，会对小组使用 Git 的情况进行考察。 本实验需要利用操作系统的同步机制，实现问题中要求的逻辑功能。 实验代码可在官网中自行下载，无需 Pintos 环境即可直接运行。  实验内容 #   Problem 1：自动化车站  乘客行为：到站台等车、车来则上车 火车行为：到站装载乘客，无人等待或车已满就开走 让乘客和火车的行为流畅运行，以实现车站的自动化管理   Problem 2：氢原子与氧原子结合，生成 H2O  2 个 H 和 1 个 O 生成水分子 如何保证 H2O 结构正常生成，不会遗漏或多加原子    Problem 1 #  需求 #  CalTrain 程序想让你通过自动化列车和乘客管理来提高效率。每名乘客和每列火车都由一个线程控制。 要求编写同步函数，以确保列车的有序装载。避免出现多人上车座位不够的情况。">
+<meta name=description content="Problem Set 0 #  实验说明 #   单人完成，代码要求每人一份（只需提交两个 *.c文件）。除代码外，还需要提交文档。内容可为设计和需求说明、解决思路等，无文档模板，自由发挥。 请仅提交一个 PDF 文件（可用 PDF 合并方法，也可写在一个 Markdown/LaTex 项目里（推荐））。由组长将代码文件和文档收齐后，将每个人的提交内容放在各自的文件夹后打包为 Zip 包提交。 本次实验因为不涉及多人合作，故对 Git 的使用没有要求。此后的 Project 1 开始，会对小组使用 Git 的情况进行考察。 本实验需要利用操作系统的同步机制，实现问题中要求的逻辑功能。 实验代码可在官网中自行下载，无需 Pintos 环境即可直接运行。  实验内容 #   Problem 1：自动化车站  乘客行为：到站台等车、车来则上车 火车行为：到站装载乘客，无人等待或车已满就开走 让乘客和火车的行为流畅运行，以实现车站的自动化管理   Problem 2：氢原子与氧原子结合，生成 H2O  2 个 H 和 1 个 O 生成水分子 如何保证 H2O 结构正常生成，不会遗漏或多加原子    Problem 1 #  需求 #  CalTrain 程序想让你通过自动化列车和乘客管理来提高效率。每名乘客和每列火车都由一个线程控制。 要求编写同步函数，以确保列车的有序装载。避免出现多人上车座位不够的情况。">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Problem Set 0">
-<meta property="og:description" content="Problem Set 0 #  实验说明 #   单人完成，代码要求每人一份。由组长收齐后，将每个人的提交内容放在各自的文件夹后打包为 Zip 包提交。 提交内容可不限于代码，设计文档、解决思路等都欢迎提交。若提交文档，请仅提交一个 PDF （可用 PDF 合并方法，也可写在一个 Markdown/LaTex 项目里）。注意这一项是选做的，没有对文档有要求。 本次实验因为不涉及多人合作，故对 Git 的使用没有要求。此后的 Project 1 开始，会对小组使用 Git 的情况进行考察。 本实验需要利用操作系统的同步机制，实现问题中要求的逻辑功能。 实验代码可在官网中自行下载，无需 Pintos 环境即可直接运行。  实验内容 #   Problem 1：自动化车站  乘客行为：到站台等车、车来则上车 火车行为：到站装载乘客，无人等待或车已满就开走 让乘客和火车的行为流畅运行，以实现车站的自动化管理   Problem 2：氢原子与氧原子结合，生成 H2O  2 个 H 和 1 个 O 生成水分子 如何保证 H2O 结构正常生成，不会遗漏或多加原子    Problem 1 #  需求 #  CalTrain 程序想让你通过自动化列车和乘客管理来提高效率。每名乘客和每列火车都由一个线程控制。 要求编写同步函数，以确保列车的有序装载。避免出现多人上车座位不够的情况。">
+<meta property="og:description" content="Problem Set 0 #  实验说明 #   单人完成，代码要求每人一份（只需提交两个 *.c文件）。除代码外，还需要提交文档。内容可为设计和需求说明、解决思路等，无文档模板，自由发挥。 请仅提交一个 PDF 文件（可用 PDF 合并方法，也可写在一个 Markdown/LaTex 项目里（推荐））。由组长将代码文件和文档收齐后，将每个人的提交内容放在各自的文件夹后打包为 Zip 包提交。 本次实验因为不涉及多人合作，故对 Git 的使用没有要求。此后的 Project 1 开始，会对小组使用 Git 的情况进行考察。 本实验需要利用操作系统的同步机制，实现问题中要求的逻辑功能。 实验代码可在官网中自行下载，无需 Pintos 环境即可直接运行。  实验内容 #   Problem 1：自动化车站  乘客行为：到站台等车、车来则上车 火车行为：到站装载乘客，无人等待或车已满就开走 让乘客和火车的行为流畅运行，以实现车站的自动化管理   Problem 2：氢原子与氧原子结合，生成 H2O  2 个 H 和 1 个 O 生成水分子 如何保证 H2O 结构正常生成，不会遗漏或多加原子    Problem 1 #  需求 #  CalTrain 程序想让你通过自动化列车和乘客管理来提高效率。每名乘客和每列火车都由一个线程控制。 要求编写同步函数，以确保列车的有序装载。避免出现多人上车座位不够的情况。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/ps0/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2021-09-30T17:50:17+08:00">
+<meta property="article:modified_time" content="2021-10-12T21:52:28+08:00">
 <title>Problem Set 0 | OS Pintos Labs</title>
 <link rel=manifest href=/os-labs/manifest.json>
 <link rel=icon href=/os-labs/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/os-labs/flexsearch.min.js></script>
-<script defer src=/os-labs/en.search.min.6df48e320d71839b9571d6f6a790d012d06ca047025d2efea6676550c8e2e8c5.js integrity="sha256-bfSOMg1xg5uVcdb2p5DQEtBsoEcCXS7+pmdlUMji6MU=" crossorigin=anonymous></script>
+<script defer src=/os-labs/en.search.min.7157a7af248c95edf5b659cf95ec2a9a7ab7335b77416abe9cc17bbf81bef5af.js integrity="sha256-cVenrySMle31tlnPlewqmnq3M1t3QWq+nMF7v4G+9a8=" crossorigin=anonymous></script>
 <script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -116,8 +116,8 @@ Problem Set 0
 <a class=anchor href=#%e5%ae%9e%e9%aa%8c%e8%af%b4%e6%98%8e>#</a>
 </h2>
 <ul>
-<li>单人完成，代码要求每人一份。由组长收齐后，将每个人的提交内容放在各自的文件夹后打包为 Zip 包提交。</li>
-<li>提交内容可不限于代码，设计文档、解决思路等都欢迎提交。若提交文档，请仅提交一个 PDF （可用 PDF 合并方法，也可写在一个 Markdown/LaTex 项目里）。注意这一项是选做的，没有对文档有要求。</li>
+<li>单人完成，代码要求每人一份（只需提交两个 <code>*.c</code>文件）。除代码外，还需要提交文档。内容可为设计和需求说明、解决思路等，无文档模板，自由发挥。</li>
+<li>请仅提交一个 PDF 文件（可用 PDF 合并方法，也可写在一个 Markdown/LaTex 项目里（推荐））。由组长将代码文件和文档收齐后，将每个人的提交内容放在各自的文件夹后打包为 Zip 包提交。</li>
 <li>本次实验因为不涉及多人合作，故对 Git 的使用没有要求。此后的 Project 1 开始，会对小组使用 Git 的情况进行考察。</li>
 <li>本实验需要利用操作系统的同步机制，实现问题中要求的逻辑功能。</li>
 <li>实验代码可在官网中自行下载，无需 Pintos 环境即可直接运行。</li>
@@ -266,9 +266,9 @@ Looks good!
 </code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/ee7201fdf4fa906adb44486979e7ea96aff63e94 title="Last modified by Yinghao Zhu | September 30, 2021" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/b519cde03c042efec6d96de70c2123fd21aacb33 title="Last modified by Yinghao Zhu | October 12, 2021" target=_blank rel=noopener>
 <img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
-<span>September 30, 2021</span>
+<span>October 12, 2021</span>
 </a>
 </div>
 <div>
