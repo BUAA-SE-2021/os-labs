@@ -9,7 +9,7 @@ type: docs
 
 实验来自[CS 140: Operating Systems (Spring 2020)](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/index.php)，包含以下若干个 Projects：
 
-- [x] [Problem Set 0: Synchronization](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/problemSet0.php) 单人，必做，10 月 14 日 23：00 前提交
+- [x] [Problem Set 0: Synchronization](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/problemSet0.php) 单人，必做，10 月 14 日 23：00 前提交（任老师班是 0 点，为防止云平台卡住，原老师班特提早一小时，下同）
 - [x] [Project 1: Threads](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，暂定 11 月 7 日 23：00 前提交
 - [x] [Project 2: User Programs](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，暂定 11 月 28 日 23：00 前提交
 - [ ] [Project 3: Virtual Memory](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，选做，暂定 12 月 5 日 23：00 前提交
@@ -52,7 +52,7 @@ See the Pintos documentation for details on this project:
 See the Pintos documentation for details on this project:
 
 - [Assignment](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintos/pintos_4.html)
-- [Frequently asked questions](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintos/pintos_4.html#Project%203%20FAQ)
+- [Frequently asked questions](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintos/pintos_4.html#Project%203%20FAQ)23
 - [Template for design document](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintos/vm.tmpl)
 
 ## 提交方式和内容
@@ -61,12 +61,14 @@ See the Pintos documentation for details on this project:
 
 每个实验需提交代码（需要提供必要的中文代码注释）和中文实验文档。
 
-- [必做] 官方所给的 Design Document、过点的情况
-- [可选，视程度加分] 设计方案（算法描述、数据结构）、踩坑记录、Debug 的解决方案、实验心得体会、用户手册、测试报告、你认为有意义的任何内容
+- [**必做**] 官方所给的 Design Document、过点的情况、Git 仓库地址（请设置为 Private，并邀请助教进仓库）
+- [**必做**] 设计方案（算法描述、数据结构）、踩坑记录、Debug 的解决方案、实验心得体会、用户手册、测试报告、你认为有意义的任何内容（有模板提供）
 
-我们会提供 Markdown 模板和需要提交文件的参考目录结构，请在完成实验后将所有需要提交的文件压缩成 Zip 包上传至北航软件学院云平台。命名方式和具体提交内容见各实验的详细说明。
+我们会提供文档 Markdown 模板和需要提交文件的参考目录结构，请在完成实验后将所有需要提交的文件压缩成 Zip 包上传至北航软件学院云平台。命名方式和具体提交内容见各实验的详细说明。
 
 另外，每周需要通过周例会的形式记录小组内的组织进度安排，周例会需要写一份报告，同样以小组为单位。从第五周上机课开始，每周四晚 23 时前提交至云平台上。第一次周例会的文档提交时间为 10 月 14 日，请在 14 日前及时开展周例会活动。
+
+周例会的内容务必如实填写，我们会在上机时间检查各组的周例会的开展情况和 Git 的历史提交记录（请各组提前作好准备，验收时向助教展示），并对组内同学随机抽查提问。（小提示：如果早就把实验 AK 了，就在周例会写“已经做完了，没有进行讨论。”这不会影响当次周例会的考核分数。如果 Project 3 都提早做完并验收完了，上机课都不用来。）
 
 **注意：**
 
@@ -74,11 +76,11 @@ See the Pintos documentation for details on this project:
 
 ## 评分说明
 
-实验内容占总成绩的 40%，实验课上机时会有签到，每次实验后会有验收答辩。
+实验内容占总成绩的 40 \%。实验课上机时会有签到和对周例会的过程性检查，每次实验和文档完成后，可主动联系助教来进行验收（早做完早验收）。验收方式：向助教现场展示过点的情况，对所提交的文档提问检查。
 
 分数占比：
 
-- 签到：10 分
+- 签到（含周例会的过程性检查）：10 分
 - 考试：50 分
 - Pintos 实验：40 分
   - Problem Set 0：5 分
@@ -86,10 +88,20 @@ See the Pintos documentation for details on this project:
   - Project 2：20 分
   - Project 3：附加 5 分
 
+关于申优答辩的说明：
+
+在实验课上机的最后一周组织申优答辩，小组可主动报名参与申优答辩。其中，若完成了 Project 3，必须参加验收，否则得不到该附加的 5 分。验收内容可为 Project 1~3 的相关内容，着重介绍本学期团队在完成 Pintos 实验时遇到的重难点以及对应的解决方案。申优答辩的分值占平时分的 10%（5 分），如不参与申优，则平时分的上限为 45 分。
+
+最终的总成绩 = (签到 + Pintos 实验分) \* 90 \% + 申优答辩分 + Project 3 的附加分 5 分 + 考试分。
+
+**注意：**
+
+本门课程不设置组内权重。组员的验收表现与全组的团队分挂钩，同时个人的过程性验收情况关系到了个人分。
+
 ## 实验时间安排
 
 - 正式实验从第 4 周开始。
-- 实验时间为每周四，原老师班的实验机房：（一）316。
+- 实验时间为每周四，原老师班的实验机房：（一）316，任老师班的实验机房：（一）215。
 - 每周实验有签到考察，每组成员没有特殊情况请假务必到场。
 - 实验最终答辩时间暂定在第 17 周（考期前，约 12 月末），小组以 PPT 展示的形式总结实验，并汇报实验完成度，代码在截止日期前提交至云平台的作业中。
 
@@ -101,7 +113,7 @@ See the Pintos documentation for details on this project:
 
 ## 诚信说明
 
-实验代码和报告将严格查重，如发现抄袭，以零分处理。不允许参考他人的Pintos实现（读开源项目如 Linux、FreeBSD 等的源码是鼓励的，但同样不允许抄袭，如它们有哪部分的实现启发了你，请在实验文档中引用注明），请务必独立完成每次实验。
+实验代码和报告将严格查重，如发现抄袭，以零分处理。不允许参考他人的 Pintos 实现（读开源项目如 Linux、FreeBSD 等的源码是鼓励的，但同样不允许抄袭，如它们有哪部分的实现启发了你，请在实验文档中引用注明），请务必独立完成每次实验。
 
 附 Stanford 的 Honor Code 的说明：
 
