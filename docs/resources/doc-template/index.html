@@ -1,0 +1,327 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Project X 实验文档模板 #   Project X (X = 1, 2, 3)
+ 团队 #  基本信息 #     姓名 学号                      每位组员的主要工作内容 #  Git 相关 #   Pintos 的 Git 项目地址
+参考资料 #    资料 1  资料 2  需求分析 #  设计思路 #   可描述算法描述、数据结构等">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="实验文档模板">
+<meta property="og:description" content="Project X 实验文档模板 #   Project X (X = 1, 2, 3)
+ 团队 #  基本信息 #     姓名 学号                      每位组员的主要工作内容 #  Git 相关 #   Pintos 的 Git 项目地址
+参考资料 #    资料 1  资料 2  需求分析 #  设计思路 #   可描述算法描述、数据结构等">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/resources/doc-template/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2021-10-12T21:46:10+08:00">
+<title>实验文档模板 | OS Pintos Labs</title>
+<link rel=manifest href=/os-labs/manifest.json>
+<link rel=icon href=/os-labs/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
+<script defer src=/os-labs/flexsearch.min.js></script>
+<script defer src=/os-labs/en.search.min.6df48e320d71839b9571d6f6a790d012d06ca047025d2efea6676550c8e2e8c5.js integrity="sha256-bfSOMg1xg5uVcdb2p5DQEtBsoEcCXS7+pmdlUMji6MU=" crossorigin=anonymous></script>
+<script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/os-labs/><span>OS Pintos Labs</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/>Table of Contents</a>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/ps0/>Problem Set 0</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/>Resources</a>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/weekly-meeting-report/>周例会报告模板</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/install-pintos/>Pintos 环境搭建</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/doc-template/ class=active>实验文档模板</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/BUAA-SE-2021/os-labs target=_blank rel=noopener>
+Github
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/os-labs/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>实验文档模板</strong>
+<label for=toc-control>
+<img src=/os-labs/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#project-x-实验文档模板>Project X 实验文档模板</a>
+<ul>
+<li><a href=#团队>团队</a>
+<ul>
+<li><a href=#基本信息>基本信息</a></li>
+<li><a href=#每位组员的主要工作内容>每位组员的主要工作内容</a></li>
+<li><a href=#git-相关>Git 相关</a></li>
+<li><a href=#参考资料>参考资料</a></li>
+</ul>
+</li>
+<li><a href=#需求分析>需求分析</a></li>
+<li><a href=#设计思路>设计思路</a></li>
+<li><a href=#重难点讲解>重难点讲解</a></li>
+<li><a href=#用户手册>用户手册</a></li>
+<li><a href=#测试报告>测试报告</a></li>
+<li><a href=#各成员的心得体会>各成员的心得体会</a>
+<ul>
+<li><a href=#student1>Student1</a></li>
+<li><a href=#student2>Student2</a></li>
+</ul>
+</li>
+<li><a href=#其他你认为有必要的内容-optional>其他你认为有必要的内容 (Optional)</a></li>
+<li><a href=#空白-markdown-模板>空白 Markdown 模板</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=project-x-实验文档模板>
+Project X 实验文档模板
+<a class=anchor href=#project-x-%e5%ae%9e%e9%aa%8c%e6%96%87%e6%a1%a3%e6%a8%a1%e6%9d%bf>#</a>
+</h1>
+<blockquote>
+<p>Project X (X = 1, 2, 3)</p>
+</blockquote>
+<h2 id=团队>
+团队
+<a class=anchor href=#%e5%9b%a2%e9%98%9f>#</a>
+</h2>
+<h3 id=基本信息>
+基本信息
+<a class=anchor href=#%e5%9f%ba%e6%9c%ac%e4%bf%a1%e6%81%af>#</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>学号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id=每位组员的主要工作内容>
+每位组员的主要工作内容
+<a class=anchor href=#%e6%af%8f%e4%bd%8d%e7%bb%84%e5%91%98%e7%9a%84%e4%b8%bb%e8%a6%81%e5%b7%a5%e4%bd%9c%e5%86%85%e5%ae%b9>#</a>
+</h3>
+<h3 id=git-相关>
+Git 相关
+<a class=anchor href=#git-%e7%9b%b8%e5%85%b3>#</a>
+</h3>
+<p>
+<a href=/os-labs/>Pintos 的 Git 项目地址</a></p>
+<h3 id=参考资料>
+参考资料
+<a class=anchor href=#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99>#</a>
+</h3>
+<ol>
+<li>
+<a href=link1>资料 1</a></li>
+<li>
+<a href=link2>资料 2</a></li>
+</ol>
+<h2 id=需求分析>
+需求分析
+<a class=anchor href=#%e9%9c%80%e6%b1%82%e5%88%86%e6%9e%90>#</a>
+</h2>
+<h2 id=设计思路>
+设计思路
+<a class=anchor href=#%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af>#</a>
+</h2>
+<blockquote>
+<p>可描述算法描述、数据结构等</p>
+</blockquote>
+<h2 id=重难点讲解>
+重难点讲解
+<a class=anchor href=#%e9%87%8d%e9%9a%be%e7%82%b9%e8%ae%b2%e8%a7%a3>#</a>
+</h2>
+<blockquote>
+<p>可写踩坑记录、Debug 的解决方案等</p>
+</blockquote>
+<h2 id=用户手册>
+用户手册
+<a class=anchor href=#%e7%94%a8%e6%88%b7%e6%89%8b%e5%86%8c>#</a>
+</h2>
+<h2 id=测试报告>
+测试报告
+<a class=anchor href=#%e6%b5%8b%e8%af%95%e6%8a%a5%e5%91%8a>#</a>
+</h2>
+<h2 id=各成员的心得体会>
+各成员的心得体会
+<a class=anchor href=#%e5%90%84%e6%88%90%e5%91%98%e7%9a%84%e5%bf%83%e5%be%97%e4%bd%93%e4%bc%9a>#</a>
+</h2>
+<h3 id=student1>
+Student1
+<a class=anchor href=#student1>#</a>
+</h3>
+<h3 id=student2>
+Student2
+<a class=anchor href=#student2>#</a>
+</h3>
+<p>&mldr;</p>
+<h2 id=其他你认为有必要的内容-optional>
+其他你认为有必要的内容 (Optional)
+<a class=anchor href=#%e5%85%b6%e4%bb%96%e4%bd%a0%e8%ae%a4%e4%b8%ba%e6%9c%89%e5%bf%85%e8%a6%81%e7%9a%84%e5%86%85%e5%ae%b9-optional>#</a>
+</h2>
+<h2 id=空白-markdown-模板>
+空白 Markdown 模板
+<a class=anchor href=#%e7%a9%ba%e7%99%bd-markdown-%e6%a8%a1%e6%9d%bf>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown># Project X 实验文档
+
+<span style=color:#75715e>## 团队
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### 基本信息
+</span><span style=color:#75715e></span>
+| 姓名 | 学号 |
+| ---- | ---- |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
+
+<span style=color:#75715e>### 每位组员的主要工作内容
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### Git 相关
+</span><span style=color:#75715e></span>
+[Pintos 的 Git 项目地址]()
+
+<span style=color:#75715e>### 参考资料
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>1.</span> []()
+<span style=color:#66d9ef>2.</span> []()
+
+<span style=color:#75715e>## 需求分析
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>## 设计思路
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>## 重难点讲解
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>## 用户手册
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>## 测试报告
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>## 各成员的心得体会
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### Student1
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### Student2
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### Student3
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### Student4
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>## 其他你认为有必要的内容 (Optional)
+</span></code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/ebe1a06214e6e8b7003211f5846b757f28d01bf0 title="Last modified by Yinghao Zhu | October 12, 2021" target=_blank rel=noopener>
+<img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
+<span>October 12, 2021</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/edit/main/exampleSite/content/docs/resources/doc-template.md target=_blank rel=noopener>
+<img src=/os-labs/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#project-x-实验文档模板>Project X 实验文档模板</a>
+<ul>
+<li><a href=#团队>团队</a>
+<ul>
+<li><a href=#基本信息>基本信息</a></li>
+<li><a href=#每位组员的主要工作内容>每位组员的主要工作内容</a></li>
+<li><a href=#git-相关>Git 相关</a></li>
+<li><a href=#参考资料>参考资料</a></li>
+</ul>
+</li>
+<li><a href=#需求分析>需求分析</a></li>
+<li><a href=#设计思路>设计思路</a></li>
+<li><a href=#重难点讲解>重难点讲解</a></li>
+<li><a href=#用户手册>用户手册</a></li>
+<li><a href=#测试报告>测试报告</a></li>
+<li><a href=#各成员的心得体会>各成员的心得体会</a>
+<ul>
+<li><a href=#student1>Student1</a></li>
+<li><a href=#student2>Student2</a></li>
+</ul>
+</li>
+<li><a href=#其他你认为有必要的内容-optional>其他你认为有必要的内容 (Optional)</a></li>
+<li><a href=#空白-markdown-模板>空白 Markdown 模板</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
