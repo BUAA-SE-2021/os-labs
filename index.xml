@@ -6,9 +6,9 @@ BFD header file version (GNU Binutils) 2.21.1 elf32-i386 (header little endian, 
 首先下载该依赖包：终端执行 wget http://ftpmirror.gnu.org/binutils/binutils-2.21.1.tar.bz2</description></item><item><title>Project 1</title><link>https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p1/</guid><description>Project 1: Threads # 需要提交代码和文档。代码即为包含了 pintos/src 的源代码，文档则是在本网站 Resources 区“实验文档模板”和“Project 1 DesignDoc 模板”的整合版本，云平台上可下载。请将其整合导出为一个 PDF 文件，命名为 p1-组长学号-组长姓名.pdf ，并与代码文件打包为 Zip，提交至云平台。
 提交的目录结构为：
 p1-组长学号-组长姓名 ├── pintos ├── src ...... ├── p1-组长学号-组长姓名.pdf 本次实验的 DDL 是 2021 年 11 月 11 日晚 23 时。
-Pintos 结构图 # Pintos 是一个小型的操作系统，其运行在 x86 硬件模拟器 bochs 之上。其已经实现了一个功能较少的操作系统，我们要做的事情就是给这个操作系统添加功能。
-Pintos 结构图如上所示，其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。
-实验背景知识 # Pintos 目录结构 # 本节将主要给大家介绍 Pintos 中比较重要的几个文件夹。
+实验背景知识 # Pintos 简介 # Pintos 是一个小型的操作系统，其运行在 x86 硬件模拟器 bochs 之上。其已经实现了一个功能较少的操作系统，我们要做的事情就是给这个操作系统添加功能。
+Pintos 结构图如上所示。和市面上常见的操作系统类似，Pintos 将整个体系分为了用户态和内核态，用户态的程序通过系统调用获得内核的服务。其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。
+Pintos 目录结构 # 本节将主要给大家介绍 Pintos 中比较重要的几个文件夹。
 在整个 Pintos 实验课中，我们要修改的代码都在 src 目录下。Project 1 的实验中，我们所要修改的文件主要集中在 src/threads 和 src/devices 这两个目录中，由于具体实现方式不同，有的同学也会有可能修改到少量其他目录中的文件。</description></item><item><title>实验文档模板</title><link>https://buaa-se-2021.github.io/os-labs/docs/resources/doc-template/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://buaa-se-2021.github.io/os-labs/docs/resources/doc-template/</guid><description>Project X 实验文档模板 # Project X (X = 1, 2, 3)
 团队 # 基本信息 # 姓名 学号 Git 用户名 每位组员的主要工作内容 # Git 相关 # Pintos 的 Git 项目地址
 参考资料 # 资料 1 资料 2 实验要求 # 需求分析 # 设计思路 # 可描述算法描述、数据结构等</description></item><item><title>Project 1 DesignDoc 模板</title><link>https://buaa-se-2021.github.io/os-labs/docs/resources/project01-design-doc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://buaa-se-2021.github.io/os-labs/docs/resources/project01-design-doc/</guid><description>Project 1 Design Document # QUESTION 1: ALARM CLOCK # DATA STRUCTURES # A1: Copy here the declaration of each new or changed struct or struct member, global or static variable, typedef, or enumeration. Identify the purpose of each in 25 words or less.

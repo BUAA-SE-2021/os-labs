@@ -5,28 +5,28 @@
 <meta name=description content="Project 1: Threads #  需要提交代码和文档。代码即为包含了 pintos/src 的源代码，文档则是在本网站 Resources 区“实验文档模板”和“Project 1 DesignDoc 模板”的整合版本，云平台上可下载。请将其整合导出为一个 PDF 文件，命名为 p1-组长学号-组长姓名.pdf ，并与代码文件打包为 Zip，提交至云平台。
 提交的目录结构为：
 p1-组长学号-组长姓名 ├── pintos ├── src ...... ├── p1-组长学号-组长姓名.pdf 本次实验的 DDL 是 2021 年 11 月 11 日晚 23 时。
-Pintos 结构图 #  Pintos 是一个小型的操作系统，其运行在 x86 硬件模拟器 bochs 之上。其已经实现了一个功能较少的操作系统，我们要做的事情就是给这个操作系统添加功能。
- Pintos 结构图如上所示，其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。
-实验背景知识 #  Pintos 目录结构 #  本节将主要给大家介绍 Pintos 中比较重要的几个文件夹。
+实验背景知识 #  Pintos 简介 #  Pintos 是一个小型的操作系统，其运行在 x86 硬件模拟器 bochs 之上。其已经实现了一个功能较少的操作系统，我们要做的事情就是给这个操作系统添加功能。
+ Pintos 结构图如上所示。和市面上常见的操作系统类似，Pintos 将整个体系分为了用户态和内核态，用户态的程序通过系统调用获得内核的服务。其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。
+Pintos 目录结构 #  本节将主要给大家介绍 Pintos 中比较重要的几个文件夹。
 在整个 Pintos 实验课中，我们要修改的代码都在 src 目录下。Project 1 的实验中，我们所要修改的文件主要集中在 src/threads 和 src/devices 这两个目录中，由于具体实现方式不同，有的同学也会有可能修改到少量其他目录中的文件。">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Project 1">
 <meta property="og:description" content="Project 1: Threads #  需要提交代码和文档。代码即为包含了 pintos/src 的源代码，文档则是在本网站 Resources 区“实验文档模板”和“Project 1 DesignDoc 模板”的整合版本，云平台上可下载。请将其整合导出为一个 PDF 文件，命名为 p1-组长学号-组长姓名.pdf ，并与代码文件打包为 Zip，提交至云平台。
 提交的目录结构为：
 p1-组长学号-组长姓名 ├── pintos ├── src ...... ├── p1-组长学号-组长姓名.pdf 本次实验的 DDL 是 2021 年 11 月 11 日晚 23 时。
-Pintos 结构图 #  Pintos 是一个小型的操作系统，其运行在 x86 硬件模拟器 bochs 之上。其已经实现了一个功能较少的操作系统，我们要做的事情就是给这个操作系统添加功能。
- Pintos 结构图如上所示，其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。
-实验背景知识 #  Pintos 目录结构 #  本节将主要给大家介绍 Pintos 中比较重要的几个文件夹。
+实验背景知识 #  Pintos 简介 #  Pintos 是一个小型的操作系统，其运行在 x86 硬件模拟器 bochs 之上。其已经实现了一个功能较少的操作系统，我们要做的事情就是给这个操作系统添加功能。
+ Pintos 结构图如上所示。和市面上常见的操作系统类似，Pintos 将整个体系分为了用户态和内核态，用户态的程序通过系统调用获得内核的服务。其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。
+Pintos 目录结构 #  本节将主要给大家介绍 Pintos 中比较重要的几个文件夹。
 在整个 Pintos 实验课中，我们要修改的代码都在 src 目录下。Project 1 的实验中，我们所要修改的文件主要集中在 src/threads 和 src/devices 这两个目录中，由于具体实现方式不同，有的同学也会有可能修改到少量其他目录中的文件。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p1/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2021-10-14T14:21:14+08:00">
+<meta property="article:modified_time" content="2021-10-14T14:26:36+08:00">
 <title>Project 1 | OS Pintos Labs</title>
 <link rel=manifest href=/os-labs/manifest.json>
 <link rel=icon href=/os-labs/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/os-labs/flexsearch.min.js></script>
-<script defer src=/os-labs/en.search.min.8c7ce29cae2418990a47747fdf4ccb35ca584f7ceaf982cb7b679ee41bbf2ea0.js integrity="sha256-jHzinK4kGJkKR3R/30zLNcpYT3zq+YLLe2ee5Bu/LqA=" crossorigin=anonymous></script>
+<script defer src=/os-labs/en.search.min.3b8710b402b71ec754097fc2e1e8ad6094e29b57c90fc096a4189bf1aaa9b776.js integrity="sha256-O4cQtAK3HsdUCX/C4eitYJTim1fJD8CWpBib8aqpt3Y=" crossorigin=anonymous></script>
 <script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -102,9 +102,9 @@ Github
 <ul>
 <li><a href=#project-1-threads>Project 1: Threads</a>
 <ul>
-<li><a href=#pintos-结构图>Pintos 结构图</a></li>
 <li><a href=#实验背景知识>实验背景知识</a>
 <ul>
+<li><a href=#pintos-简介>Pintos 简介</a></li>
 <li><a href=#pintos-目录结构>Pintos 目录结构</a></li>
 <li><a href=#实验运行方式>实验运行方式</a></li>
 <li><a href=#常用文件介绍>常用文件介绍</a></li>
@@ -135,18 +135,18 @@ Project 1: Threads
       ......
    ├── p1-组长学号-组长姓名.pdf
 </code></pre></div><p>本次实验的 DDL 是 2021 年 11 月 11 日晚 23 时。</p>
-<h2 id=pintos-结构图>
-Pintos 结构图
-<a class=anchor href=#pintos-%e7%bb%93%e6%9e%84%e5%9b%be>#</a>
-</h2>
-<p>Pintos 是一个小型的操作系统，其运行在 x86 硬件模拟器 bochs 之上。其已经实现了一个功能较少的操作系统，我们要做的事情就是给这个操作系统添加功能。</p>
-<p>
-<img src=https://raw.githubusercontent.com/BUAA-SE-2021/os-labs/main/static/img/pintos-structure.png alt=pintos-structure></p>
-<p>Pintos 结构图如上所示，其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。</p>
 <h2 id=实验背景知识>
 实验背景知识
 <a class=anchor href=#%e5%ae%9e%e9%aa%8c%e8%83%8c%e6%99%af%e7%9f%a5%e8%af%86>#</a>
 </h2>
+<h3 id=pintos-简介>
+Pintos 简介
+<a class=anchor href=#pintos-%e7%ae%80%e4%bb%8b>#</a>
+</h3>
+<p>Pintos 是一个小型的操作系统，其运行在 x86 硬件模拟器 bochs 之上。其已经实现了一个功能较少的操作系统，我们要做的事情就是给这个操作系统添加功能。</p>
+<p>
+<img src=https://raw.githubusercontent.com/BUAA-SE-2021/os-labs/main/static/img/pintos-structure.png alt=pintos-structure></p>
+<p>Pintos 结构图如上所示。和市面上常见的操作系统类似，Pintos 将整个体系分为了用户态和内核态，用户态的程序通过系统调用获得内核的服务。其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。</p>
 <h3 id=pintos-目录结构>
 Pintos 目录结构
 <a class=anchor href=#pintos-%e7%9b%ae%e5%bd%95%e7%bb%93%e6%9e%84>#</a>
@@ -154,10 +154,10 @@ Pintos 目录结构
 <p>本节将主要给大家介绍 Pintos 中比较重要的几个文件夹。</p>
 <p>在整个 Pintos 实验课中，我们要修改的代码都在 <code>src</code> 目录下。Project 1 的实验中，我们所要修改的文件主要集中在 <code>src/threads</code> 和 <code>src/devices</code> 这两个目录中，由于具体实现方式不同，有的同学也会有可能修改到少量其他目录中的文件。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>.
-├── devices
-├── examples
-├── filesys
-├── lib
+├── devices <span style=color:#75715e># 包含一些与硬件交互的内容</span>
+├── examples <span style=color:#75715e># 包含 Pintos 对一些常用 Shell 命令的实现</span>
+├── filesys <span style=color:#75715e># 包含 Pintos 中对文件系统的实现</span>
+├── lib <span style=color:#75715e># 包含 C 语言中的一些标准库</span>
 ├── LICENSE
 ├── Make.config
 ├── Makefile
@@ -165,9 +165,9 @@ Pintos 目录结构
 ├── Makefile.kernel
 ├── Makefile.userprog
 ├── misc
-├── tests
-├── threads
-├── userprog
+├── tests <span style=color:#75715e># 包含各实验的测试文件</span>
+├── threads <span style=color:#75715e># 包含 Pintos 对于内核线程的实现</span>
+├── userprog <span style=color:#75715e># 包含 Pintos 对于用户线程的实现</span>
 ├── utils
 └── vm
 <span style=color:#ae81ff>10</span> directories, <span style=color:#ae81ff>6</span> files
@@ -447,7 +447,7 @@ H   -&gt;   M   -&gt;   L
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/b55b9930aecdfc155d66cb007bd7998b04d92eb2 title="Last modified by Yinghao Zhu | October 14, 2021" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/da699af9e45f9f344724eedcdcdf836e4681d222 title="Last modified by Yinghao Zhu | October 14, 2021" target=_blank rel=noopener>
 <img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
 <span>October 14, 2021</span>
 </a>
@@ -471,9 +471,9 @@ H   -&gt;   M   -&gt;   L
 <ul>
 <li><a href=#project-1-threads>Project 1: Threads</a>
 <ul>
-<li><a href=#pintos-结构图>Pintos 结构图</a></li>
 <li><a href=#实验背景知识>实验背景知识</a>
 <ul>
+<li><a href=#pintos-简介>Pintos 简介</a></li>
 <li><a href=#pintos-目录结构>Pintos 目录结构</a></li>
 <li><a href=#实验运行方式>实验运行方式</a></li>
 <li><a href=#常用文件介绍>常用文件介绍</a></li>
