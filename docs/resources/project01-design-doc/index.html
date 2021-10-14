@@ -1,0 +1,193 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="## QUESTION 1: ALARM CLOCK  ### DATA STRUCTURES > A1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.  ### ALGORITHMS > A2: Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler. > A3: What steps are taken to minimize the amount of time spent in the timer interrupt handler?">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Project 1 Design Document">
+<meta property="og:description" content="## QUESTION 1: ALARM CLOCK  ### DATA STRUCTURES > A1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.  ### ALGORITHMS > A2: Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler. > A3: What steps are taken to minimize the amount of time spent in the timer interrupt handler?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/resources/project01-design-doc/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2021-10-14T10:54:19+08:00">
+<title>Project 1 Design Document | OS Pintos Labs</title>
+<link rel=manifest href=/os-labs/manifest.json>
+<link rel=icon href=/os-labs/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
+<script defer src=/os-labs/flexsearch.min.js></script>
+<script defer src=/os-labs/en.search.min.60e642d9351e4e048fdfe42837ca5ebafc7cf926fe981b5a75e253ac9afb18de.js integrity="sha256-YOZC2TUeTgSP3+QoN8peuvx8+Sb+mBtadeJTrJr7GN4=" crossorigin=anonymous></script>
+<script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/os-labs/><span>OS Pintos Labs</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/>Table of Contents</a>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/ps0/>Problem Set 0</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/>Resources</a>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/weekly-meeting-report/>周例会报告模板</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/install-pintos/>Pintos 环境搭建</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/doc-template/>实验文档模板</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/project01-design-doc/ class=active>Project 1 Design Document</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/BUAA-SE-2021/os-labs target=_blank rel=noopener>
+Github
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/os-labs/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Project 1 Design Document</strong>
+<label for=toc-control>
+<img src=/os-labs/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents></nav>
+</aside>
+</header>
+<article class=markdown><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=color:#75715e>## QUESTION 1: ALARM CLOCK
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### DATA STRUCTURES
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### ALGORITHMS
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A2: Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler.
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A3: What steps are taken to minimize the amount of time spent in the timer interrupt handler?
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### SYNCHRONIZATION
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A4: How are race conditions avoided when multiple threads call timer_sleep() simultaneously?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A5: How are race conditions avoided when a timer interrupt occurs during a call to timer_sleep()?
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### RATIONALE
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A6: Why did you choose this design? In what ways is it superior to another design you considered?
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>## QUESTION 2: PRIORITY SCHEDULING
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### DATA STRUCTURES
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B2: Explain the data structure used to track priority donation. Use ASCII art to diagram a nested donation. (Alternately, paste an image.)
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### ALGORITHMS
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B3: How do you ensure that the highest priority thread waiting for a lock, semaphore, or condition variable wakes up first?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B4: Describe the sequence of events when a call to lock_acquire() causes a priority donation. How is nested donation handled?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B5: Describe the sequence of events when lock_release() is called on a lock that a higher-priority thread is waiting for.
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### SYNCHRONIZATION
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B6: Describe a potential race in thread_set_priority() and explain how your implementation avoids it. Can you use a lock to avoid this race?
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### RATIONALE
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B7: Why did you choose this design? In what ways is it superior to another design you considered?
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>## QUESTION 3: ADVANCED SCHEDULER
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### DATA STRUCTURES
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>C1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### ALGORITHMS
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>C2: Suppose threads A, B, and C have nice values 0, 1, and 2. Each has a recent_cpu value of 0. Fill in the table below showing the scheduling decision and the priority and recent_cpu values for each thread after each given number of timer ticks:
+</span><span style=font-style:italic></span>
+| timer ticks | <span style=color:#e6db74>`recent_cpu`</span> A | <span style=color:#e6db74>`recent_cpu`</span> B | <span style=color:#e6db74>`recent_cpu`</span> C | <span style=color:#e6db74>`priority`</span> A | <span style=color:#e6db74>`priority`</span> B | <span style=color:#e6db74>`priority`</span> C | thread to run |
+| ----------- | -------------- | -------------- | -------------- | ------------ | ------------ | ------------ | ------------- |
+| 0           |                |                |                |              |              |              |               |
+| 4           |                |                |                |              |              |              |               |
+| 8           |                |                |                |              |              |              |               |
+| 12          |                |                |                |              |              |              |               |
+| 16          |                |                |                |              |              |              |               |
+| 20          |                |                |                |              |              |              |               |
+| 24          |                |                |                |              |              |              |               |
+| 24          |                |                |                |              |              |              |               |
+| 32          |                |                |                |              |              |              |               |
+| 36          |                |                |                |              |              |              |               |
+<span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>C3: Did any ambiguities in the scheduler specification make values in the table uncertain? If so, what rule did you use to resolve them? Does this match the behavior of your scheduler?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>C4: How is the way you divided the cost of scheduling between code inside and outside interrupt context likely to affect performance?
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### RATIONALE
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>C5: Briefly critique your design, pointing out advantages and disadvantages in your design choices. If you were to have extra time to work on this part of the project, how might you choose to refine or improve your design?
+</span></code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/1b65b0c29a905190ce009d90d153cc2b33f95ce6 title="Last modified by Yinghao Zhu | October 14, 2021" target=_blank rel=noopener>
+<img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
+<span>October 14, 2021</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/edit/main/exampleSite/content/docs/resources/project01-design-doc.md target=_blank rel=noopener>
+<img src=/os-labs/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents></nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
