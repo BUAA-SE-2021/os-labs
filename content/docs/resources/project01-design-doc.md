@@ -1,9 +1,11 @@
 ---
-title: Project 1 Design Document
+title: Project 1 Design Document 模板
 weight: 4
 ---
 
 ```markdown
+# Project 1 Design Document
+
 ## QUESTION 1: ALARM CLOCK
 
 ### DATA STRUCTURES
