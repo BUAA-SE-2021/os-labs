@@ -2,19 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="# Project 1 Design Document ## QUESTION 1: ALARM CLOCK  ### DATA STRUCTURES > A1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.  ### ALGORITHMS > A2: Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler. > A3: What steps are taken to minimize the amount of time spent in the timer interrupt handler?">
+<meta name=description content="Project 1 Design Document #  QUESTION 1: ALARM CLOCK #  DATA STRUCTURES #   A1: Copy here the declaration of each new or changed struct or struct member, global or static variable, typedef, or enumeration. Identify the purpose of each in 25 words or less.
+ ALGORITHMS #   A2: Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Project 1 DesignDoc 模板">
-<meta property="og:description" content="# Project 1 Design Document ## QUESTION 1: ALARM CLOCK  ### DATA STRUCTURES > A1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.  ### ALGORITHMS > A2: Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler. > A3: What steps are taken to minimize the amount of time spent in the timer interrupt handler?">
+<meta property="og:description" content="Project 1 Design Document #  QUESTION 1: ALARM CLOCK #  DATA STRUCTURES #   A1: Copy here the declaration of each new or changed struct or struct member, global or static variable, typedef, or enumeration. Identify the purpose of each in 25 words or less.
+ ALGORITHMS #   A2: Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/resources/project01-design-doc/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2021-10-14T10:59:35+08:00">
+<meta property="article:modified_time" content="2021-10-14T11:05:47+08:00">
 <title>Project 1 DesignDoc 模板 | OS Pintos Labs</title>
 <link rel=manifest href=/os-labs/manifest.json>
 <link rel=icon href=/os-labs/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/os-labs/flexsearch.min.js></script>
-<script defer src=/os-labs/en.search.min.fbbde38e553ad4459222815d9c09cd257c3112ca29911329f2e61fc8e94172b0.js integrity="sha256-+73jjlU61EWSIoFdnAnNJXwxEsopkRMp8uYfyOlBcrA=" crossorigin=anonymous></script>
+<script defer src=/os-labs/en.search.min.1c7775a0af4e1c901d832adf7b97575e6298d2090d46db7a5add00ff06bc5717.js integrity="sha256-HHd1oK9OHJAdgyrfe5dXXmKY0gkNRtt6Wt0A/wa8Vxc=" crossorigin=anonymous></script>
 <script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -83,10 +85,275 @@ Github
 </label>
 </div>
 <aside class="hidden clearfix">
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#project-1-design-document>Project 1 Design Document</a>
+<ul>
+<li><a href=#question-1-alarm-clock>QUESTION 1: ALARM CLOCK</a>
+<ul>
+<li><a href=#data-structures>DATA STRUCTURES</a></li>
+<li><a href=#algorithms>ALGORITHMS</a></li>
+<li><a href=#synchronization>SYNCHRONIZATION</a></li>
+<li><a href=#rationale>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#question-2-priority-scheduling>QUESTION 2: PRIORITY SCHEDULING</a>
+<ul>
+<li><a href=#data-structures-1>DATA STRUCTURES</a></li>
+<li><a href=#algorithms-1>ALGORITHMS</a></li>
+<li><a href=#synchronization-1>SYNCHRONIZATION</a></li>
+<li><a href=#rationale-1>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#question-3-advanced-scheduler>QUESTION 3: ADVANCED SCHEDULER</a>
+<ul>
+<li><a href=#data-structures-2>DATA STRUCTURES</a></li>
+<li><a href=#algorithms-2>ALGORITHMS</a></li>
+<li><a href=#rationale-2>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#空白模板>空白模板</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 </header>
-<article class=markdown><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown># Project 1 Design Document
+<article class=markdown><h1 id=project-1-design-document>
+Project 1 Design Document
+<a class=anchor href=#project-1-design-document>#</a>
+</h1>
+<h2 id=question-1-alarm-clock>
+QUESTION 1: ALARM CLOCK
+<a class=anchor href=#question-1-alarm-clock>#</a>
+</h2>
+<h3 id=data-structures>
+DATA STRUCTURES
+<a class=anchor href=#data-structures>#</a>
+</h3>
+<blockquote>
+<p>A1: Copy here the declaration of each new or changed <code>struct</code> or <code>struct</code> member, global or static variable, <code>typedef</code>, or enumeration. Identify the purpose of each in 25 words or less.</p>
+</blockquote>
+<h3 id=algorithms>
+ALGORITHMS
+<a class=anchor href=#algorithms>#</a>
+</h3>
+<blockquote>
+<p>A2: Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler.</p>
+</blockquote>
+<blockquote>
+<p>A3: What steps are taken to minimize the amount of time spent in the timer interrupt handler?</p>
+</blockquote>
+<h3 id=synchronization>
+SYNCHRONIZATION
+<a class=anchor href=#synchronization>#</a>
+</h3>
+<blockquote>
+<p>A4: How are race conditions avoided when multiple threads call timer_sleep() simultaneously?</p>
+</blockquote>
+<blockquote>
+<p>A5: How are race conditions avoided when a timer interrupt occurs during a call to timer_sleep()?</p>
+</blockquote>
+<h3 id=rationale>
+RATIONALE
+<a class=anchor href=#rationale>#</a>
+</h3>
+<blockquote>
+<p>A6: Why did you choose this design? In what ways is it superior to another design you considered?</p>
+</blockquote>
+<h2 id=question-2-priority-scheduling>
+QUESTION 2: PRIORITY SCHEDULING
+<a class=anchor href=#question-2-priority-scheduling>#</a>
+</h2>
+<h3 id=data-structures-1>
+DATA STRUCTURES
+<a class=anchor href=#data-structures-1>#</a>
+</h3>
+<blockquote>
+<p>B1: Copy here the declaration of each new or changed <code>struct</code> or <code>struct</code> member, global or static variable, <code>typedef</code>, or enumeration. Identify the purpose of each in 25 words or less.</p>
+</blockquote>
+<blockquote>
+<p>B2: Explain the data structure used to track priority donation. Use ASCII art to diagram a nested donation. (Alternately, paste an image.)</p>
+</blockquote>
+<h3 id=algorithms-1>
+ALGORITHMS
+<a class=anchor href=#algorithms-1>#</a>
+</h3>
+<blockquote>
+<p>B3: How do you ensure that the highest priority thread waiting for a lock, semaphore, or condition variable wakes up first?</p>
+</blockquote>
+<blockquote>
+<p>B4: Describe the sequence of events when a call to lock_acquire() causes a priority donation. How is nested donation handled?</p>
+</blockquote>
+<blockquote>
+<p>B5: Describe the sequence of events when lock_release() is called on a lock that a higher-priority thread is waiting for.</p>
+</blockquote>
+<h3 id=synchronization-1>
+SYNCHRONIZATION
+<a class=anchor href=#synchronization-1>#</a>
+</h3>
+<blockquote>
+<p>B6: Describe a potential race in thread_set_priority() and explain how your implementation avoids it. Can you use a lock to avoid this race?</p>
+</blockquote>
+<h3 id=rationale-1>
+RATIONALE
+<a class=anchor href=#rationale-1>#</a>
+</h3>
+<blockquote>
+<p>B7: Why did you choose this design? In what ways is it superior to another design you considered?</p>
+</blockquote>
+<h2 id=question-3-advanced-scheduler>
+QUESTION 3: ADVANCED SCHEDULER
+<a class=anchor href=#question-3-advanced-scheduler>#</a>
+</h2>
+<h3 id=data-structures-2>
+DATA STRUCTURES
+<a class=anchor href=#data-structures-2>#</a>
+</h3>
+<blockquote>
+<p>C1: Copy here the declaration of each new or changed <code>struct</code> or <code>struct</code> member, global or static variable, <code>typedef</code>, or enumeration. Identify the purpose of each in 25 words or less.</p>
+</blockquote>
+<h3 id=algorithms-2>
+ALGORITHMS
+<a class=anchor href=#algorithms-2>#</a>
+</h3>
+<blockquote>
+<p>C2: Suppose threads A, B, and C have nice values 0, 1, and 2. Each has a recent_cpu value of 0. Fill in the table below showing the scheduling decision and the priority and recent_cpu values for each thread after each given number of timer ticks:</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>timer ticks</th>
+<th><code>recent_cpu</code> A</th>
+<th><code>recent_cpu</code> B</th>
+<th><code>recent_cpu</code> C</th>
+<th><code>priority</code> A</th>
+<th><code>priority</code> B</th>
+<th><code>priority</code> C</th>
+<th>thread to run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>36</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>C3: Did any ambiguities in the scheduler specification make values in the table uncertain? If so, what rule did you use to resolve them? Does this match the behavior of your scheduler?</p>
+</blockquote>
+<blockquote>
+<p>C4: How is the way you divided the cost of scheduling between code inside and outside interrupt context likely to affect performance?</p>
+</blockquote>
+<h3 id=rationale-2>
+RATIONALE
+<a class=anchor href=#rationale-2>#</a>
+</h3>
+<blockquote>
+<p>C5: Briefly critique your design, pointing out advantages and disadvantages in your design choices. If you were to have extra time to work on this part of the project, how might you choose to refine or improve your design?</p>
+</blockquote>
+<h2 id=空白模板>
+空白模板
+<a class=anchor href=#%e7%a9%ba%e7%99%bd%e6%a8%a1%e6%9d%bf>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown># Project 1 Design Document
 
 <span style=color:#75715e>## QUESTION 1: ALARM CLOCK
 </span><span style=color:#75715e></span>
@@ -167,7 +434,7 @@ Github
 </span></code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/0a8c4baa9341eb8ee5137b5cc6b138362abec33d title="Last modified by Yinghao Zhu | October 14, 2021" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/cdb02b509e992005d970fc17862b28570c43d270 title="Last modified by Yinghao Zhu | October 14, 2021" target=_blank rel=noopener>
 <img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
 <span>October 14, 2021</span>
 </a>
@@ -187,7 +454,38 @@ Github
 </div>
 <aside class=book-toc>
 <div class=book-toc-content>
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#project-1-design-document>Project 1 Design Document</a>
+<ul>
+<li><a href=#question-1-alarm-clock>QUESTION 1: ALARM CLOCK</a>
+<ul>
+<li><a href=#data-structures>DATA STRUCTURES</a></li>
+<li><a href=#algorithms>ALGORITHMS</a></li>
+<li><a href=#synchronization>SYNCHRONIZATION</a></li>
+<li><a href=#rationale>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#question-2-priority-scheduling>QUESTION 2: PRIORITY SCHEDULING</a>
+<ul>
+<li><a href=#data-structures-1>DATA STRUCTURES</a></li>
+<li><a href=#algorithms-1>ALGORITHMS</a></li>
+<li><a href=#synchronization-1>SYNCHRONIZATION</a></li>
+<li><a href=#rationale-1>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#question-3-advanced-scheduler>QUESTION 3: ADVANCED SCHEDULER</a>
+<ul>
+<li><a href=#data-structures-2>DATA STRUCTURES</a></li>
+<li><a href=#algorithms-2>ALGORITHMS</a></li>
+<li><a href=#rationale-2>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#空白模板>空白模板</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </div>
 </aside>
 </main>
