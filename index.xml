@@ -3,7 +3,7 @@
 依赖安装 # 我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04 64 位版本（32 位版本不可以）。
 Download VMware Workstation 16 Player Download Ubuntu 16.04 选择 ubuntu-16.04.7-desktop-amd64.iso 安装 GNU binutils # 安装成功后，终端运行 i386-elf-objdump -i，应输出：
 BFD header file version (GNU Binutils) 2.21.1 elf32-i386 (header little endian, data little endian) i386... 如果未出现这一信息，则需要安装 binutils ：
-首先下载该依赖包：终端执行 wget http://ftpmirror.gnu.org/binutils/binutils-2.21.1.tar.bz2</description></item><item><title>Project 1</title><link>https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p1/</guid><description>Project 1: Threads # 需要提交代码和文档。代码即为包含了 pintos/src 的源代码，文档是在本网站 Resources 区“实验文档模板”和“Project 1 DesignDoc 模板”的整合。请将其整合导出为一个 PDF 文件，命名为 p1-组长学号-组长姓名.pdf ，并与代码文件打包为 Zip，提交至云平台。
+首先下载该依赖包：终端执行 wget http://ftpmirror.gnu.org/binutils/binutils-2.21.1.tar.bz2</description></item><item><title>Project 1</title><link>https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p1/</guid><description>Project 1: Threads # 需要提交代码和文档。代码即为包含了 pintos/src 的源代码，文档则是在本网站 Resources 区“实验文档模板”和“Project 1 DesignDoc 模板”的整合版本，云平台上可下载。请将其整合导出为一个 PDF 文件，命名为 p1-组长学号-组长姓名.pdf ，并与代码文件打包为 Zip，提交至云平台。
 提交的目录结构为：
 p1-组长学号-组长姓名 ├── pintos ├── src ...... ├── p1-组长学号-组长姓名.pdf 本次实验的 DDL 是 2021 年 11 月 11 日晚 23 时。
 Pintos 结构图 # Pintos 结构图如上所示，其操作系统内核主要分为进程管理、内存管理、文件系统、设备驱动程序等四个部分。本次实验所涉及到的主要是进程管理的部分，同学们需要根据需求实现特定的进程调度方案。
