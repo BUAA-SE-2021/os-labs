@@ -7,6 +7,8 @@ weight: 2
 
 > Author: Muyung, YinghaoZhu
 
+另外，感谢李宇轩（huahuaxiaomuzhu）同学提供在 Docker 中配置 Pintos 的方法。详见 [pintos-docker](https://github.com/huahuaxiaomuzhu/pintos-docker)。张开颜同学的配置方法也可以参考 [buaa_pintos](https://gitee.com/kaiyan3/buaa_pintos)。
+
 ## 依赖安装
 
 我所使用的实验环境为 VMware Workstation 16 Player (免费) 上运行的 Ubuntu 16.04 **64 位版本**（32 位版本不可以）。
