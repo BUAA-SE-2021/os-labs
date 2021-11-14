@@ -110,6 +110,7 @@ See the Pintos documentation for details on this project:
 - 朱英豪（微信 zhuyinghao）
 - 康曦文（微信 kxw009988）
 - 杨智茹（QQ 1270367357）
+- 彭宇（QQ 2367246190）
 
 ## 诚信说明
 
