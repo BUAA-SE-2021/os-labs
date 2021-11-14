@@ -18,13 +18,13 @@
 由于技术的进步以及人们对多用户操作同一台电脑的需求，在 80386 时代，终于将系统的工作方式给分离了，80386 具有实模式、保护模式和 v68 模式这三种工作模式。其中，实模式其实算是 8086 体系的延续，在该模式下的寻址方式和 8086 无异，这个模式也是为了兼容 16 位体系下的程序。而用户一般所处的状态就是保护模式，在这个模式下可以使用 386 系统的 32 根主线，寻址模式发生根本性的变化，最主要的是引入了特权级的概念，由于我们知道在 8086 时代，随意的内存修改可能导致系统崩溃，而想要避免这种崩溃，就需要把系统内核给保护起来，为此，386 有个 4 个特权级 r0-3，我们的系统内核在最高级别 r0 中，特权级所处的内存空间分置，允许高特权级访问低特权级内存空间，而不允许反向地访问。那么这样一来，确实避免了随意对内存空间的修改，可又引出了一些新的问题，比如系统对外设端口的调用，是通过中断的方式进行的；比如创建新的进程等，这些函数都被内核给把持着，当一个用户想要手动开启这些功能的时候，就遇到了无法访问的问题，这个时候，就需要让低特权级向高特权级发起一个建议，这个建议我们把他叫做系统调用，使用系统调用，就可以让用户在低特权级下使用高特权级的功能。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p2/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2021-11-14T14:13:18+08:00">
+<meta property="article:modified_time" content="2021-11-14T14:21:19+08:00">
 <title>Project 2 | OS Pintos Labs</title>
 <link rel=manifest href=/os-labs/manifest.json>
 <link rel=icon href=/os-labs/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/os-labs/flexsearch.min.js></script>
-<script defer src=/os-labs/en.search.min.b0b1edbced60bd8027f8a814b558e82ae24cbc238e4c4e56794b7615472885ae.js integrity="sha256-sLHtvO1gvYAn+KgUtVjoKuJMvCOOTE5WeUt2FUcoha4=" crossorigin=anonymous></script>
+<script defer src=/os-labs/en.search.min.c3de4205422d8a47deef700eb3ac7de179915c710aa993e5f93795a4bfed9734.js integrity="sha256-w95CBUItikfe73AOs6x94XmRXHEKqZPl+TeVpL/tlzQ=" crossorigin=anonymous></script>
 <script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -112,7 +112,20 @@ Github
 <ul>
 <li><a href=#前置任务打印进程退出信息>前置任务：打印进程退出信息</a></li>
 <li><a href=#任务-1进程参数>任务 1：进程参数</a></li>
-<li><a href=#任务-2系统调用>任务 2：系统调用</a></li>
+<li><a href=#任务-2系统调用>任务 2：系统调用</a>
+<ul>
+<li><a href=#调用参数所处内存地址>调用参数所处内存地址</a></li>
+<li><a href=#打开关闭文件>打开关闭文件</a></li>
+<li><a href=#创建移除文件>创建移除文件</a></li>
+<li><a href=#读写文件>读写文件</a></li>
+<li><a href=#执行与等待>执行与等待</a></li>
+<li><a href=#multi>multi</a></li>
+<li><a href=#rox>rox</a></li>
+<li><a href=#bad>bad</a></li>
+<li><a href=#资源释放>资源释放</a></li>
+<li><a href=#文件系统>文件系统</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -314,9 +327,9 @@ Project 2: User Programs
 任务 2：系统调用
 <a class=anchor href=#%e4%bb%bb%e5%8a%a1-2%e7%b3%bb%e7%bb%9f%e8%b0%83%e7%94%a8>#</a>
 </h3>
-<h4 id=21-调用参数所处内存地址>
-2.1 调用参数所处内存地址
-<a class=anchor href=#21-%e8%b0%83%e7%94%a8%e5%8f%82%e6%95%b0%e6%89%80%e5%a4%84%e5%86%85%e5%ad%98%e5%9c%b0%e5%9d%80>#</a>
+<h4 id=调用参数所处内存地址>
+调用参数所处内存地址
+<a class=anchor href=#%e8%b0%83%e7%94%a8%e5%8f%82%e6%95%b0%e6%89%80%e5%a4%84%e5%86%85%e5%ad%98%e5%9c%b0%e5%9d%80>#</a>
 </h4>
 <table>
 <thead>
@@ -380,9 +393,9 @@ Project 2: User Programs
 
 </code></pre><p><strong>Tip 2：</strong></p>
 <p>这里一定要记得，参数的地址不一定是连续的，而且每个参数的地址都是 4 个 byte，注意有可能一个参数地址一半跨越界限，一半不跨越的情况。</p>
-<h4 id=22-打开关闭文件>
-2.2 打开关闭文件
-<a class=anchor href=#22-%e6%89%93%e5%bc%80%e5%85%b3%e9%97%ad%e6%96%87%e4%bb%b6>#</a>
+<h4 id=打开关闭文件>
+打开关闭文件
+<a class=anchor href=#%e6%89%93%e5%bc%80%e5%85%b3%e9%97%ad%e6%96%87%e4%bb%b6>#</a>
 </h4>
 <table>
 <thead>
@@ -463,9 +476,9 @@ Project 2: User Programs
 <p>关闭也是同理，我们需要将维护的文件及其描述符从进程的文件列表中移除，并使用 <code>file_close</code> 关闭该文件。</p>
 <p><strong>Tip 4：</strong></p>
 <p>在维护打开文件元素时，使用了 <code>malloc</code> 的话，记得一定要在关闭时释放，这一点对于后面的某个点至关重要。同时注意，在一个进程退出时，也应该关闭其打开的所有文件。</p>
-<h4 id=23-创建移除文件>
-2.3 创建移除文件
-<a class=anchor href=#23-%e5%88%9b%e5%bb%ba%e7%a7%bb%e9%99%a4%e6%96%87%e4%bb%b6>#</a>
+<h4 id=创建移除文件>
+创建移除文件
+<a class=anchor href=#%e5%88%9b%e5%bb%ba%e7%a7%bb%e9%99%a4%e6%96%87%e4%bb%b6>#</a>
 </h4>
 <table>
 <thead>
@@ -514,9 +527,9 @@ Project 2: User Programs
 </tbody>
 </table>
 <p>这一部分较为简单，创建文件调用 <code>filesys/filesys.c</code> 中定义的 <code>filesys_create</code> 即可，移除调用 <code>filesys/filesys.c</code> 中定义的 <code>filesys_remove</code>。</p>
-<h4 id=24-读写文件>
-2.4 读写文件
-<a class=anchor href=#24-%e8%af%bb%e5%86%99%e6%96%87%e4%bb%b6>#</a>
+<h4 id=读写文件>
+读写文件
+<a class=anchor href=#%e8%af%bb%e5%86%99%e6%96%87%e4%bb%b6>#</a>
 </h4>
 <table>
 <thead>
@@ -592,9 +605,9 @@ Project 2: User Programs
 <p>和创建移除一样，比较简单，参照 <code>3.3.4</code> 的参数格式，同时对于 <code>write</code>，我们已经实现了向终端写入。<code>read</code> 会用到 <code>input_getc()</code>与 <code>file_read()</code>，<code>write</code> 会用到 <code>file_write()</code>与 <code>putbuf()</code>。</p>
 <p><strong>Tip 5：</strong></p>
 <p>这里除了注意参数是否和法外，还需要判断缓冲区是否合法。</p>
-<h4 id=25-执行与等待>
-2.5 执行与等待
-<a class=anchor href=#25-%e6%89%a7%e8%a1%8c%e4%b8%8e%e7%ad%89%e5%be%85>#</a>
+<h4 id=执行与等待>
+执行与等待
+<a class=anchor href=#%e6%89%a7%e8%a1%8c%e4%b8%8e%e7%ad%89%e5%be%85>#</a>
 </h4>
 <table>
 <thead>
@@ -655,9 +668,9 @@ Project 2: User Programs
 <p>该部分为创建子进程和父进程等待子进程并回收，也是一个难点。</p>
 <p>这里我们还需要提到前面讲过的一点，Pintos 在这里还没有特别区分进程和线程的概念，可以理解为一个线程就是一个进程，所以其 ID 可以一一映射。该部分的重点在于父进程需要维护创建的子进程列表。子进程的创建过程其实就是我们前面修改过的 <code>process_execute()</code> 函数。注意到在该函数的 <code>thread_create</code> 函数执行后，其实子进程就已经转移到 <code>start_process</code> 中开始运行或者加入就绪队列了。这里我们要保证子进程一定成功创建，就需要实现一个同步锁，来保证子进程 <code>load</code> 成功才接着执行父进程，子进程一旦创建失败，说明该该调用失败了。</p>
 <p>而对于 <code>wait</code> 操作，很明显也需要一个锁，保证父进程在子进程执行期间无法进行任何操作，等待子进程退出后，父进程获取子进程退出码，并回收资源。这里的锁的设计非常精妙，要保证父进程 <code>wait</code> 时，无法执行任何操作，子进程退出时，需要立刻通知父进程，但不能直接销毁，而要等待父进程来回收资源获取返回码等，然后才可以正常销毁。需要几个锁来完成这个操作，同学们可以好好考虑。</p>
-<h4 id=26-multi>
-2.6 multi
-<a class=anchor href=#26-multi>#</a>
+<h4 id=multi>
+multi
+<a class=anchor href=#multi>#</a>
 </h4>
 <table>
 <thead>
@@ -683,9 +696,9 @@ Project 2: User Programs
 <p>这一部分几乎没有需要多写的，只需要完成 <code>filesize</code> 这个系统调用。</p>
 <p><code>filesize </code>在文档中的声明为：<code>int filesize (int fd);</code></p>
 <p>所以需要我们用 <code>fd</code> 去寻找打开的文件。实现时调用 <code>file_length</code> 就行。</p>
-<h4 id=27-rox>
-2.7 rox
-<a class=anchor href=#27-rox>#</a>
+<h4 id=rox>
+rox
+<a class=anchor href=#rox>#</a>
 </h4>
 <table>
 <thead>
@@ -716,9 +729,9 @@ Project 2: User Programs
 <p>这一部分旨在防止进程修改正在运行的可执行文件，详见文档中的 3.3.5</p>
 <p>可执行文件在 Pintos 中的定义为用来创建进程的文件，即创建进程时打开的那一个文件。<code>filesys/file.c</code> 文件中定义了函数 <code>file_deny_write()</code>，该函数可以禁止对文件的写操作。我们需要在 <code>load</code> 时，禁止对该文件的写操作，在退出时回复。</p>
 <p>同时这一块需要实现 <code>seek</code> 调用。需要用到 <code>file_seek()</code> 函数。</p>
-<h4 id=28-bad>
-2.8 bad
-<a class=anchor href=#28-bad>#</a>
+<h4 id=bad>
+bad
+<a class=anchor href=#bad>#</a>
 </h4>
 <table>
 <thead>
@@ -762,9 +775,9 @@ Project 2: User Programs
 </tbody>
 </table>
 <p>这一部分，理论上要是做到了前面的每个地址访问都验证地址合法性，是可以直接通过的。如果有不通过，除了补充前面的不足外，由于访问非法地址会引起 <code>page_fault</code>，所以我们可以在 <code>exception.c</code> 中对 <code>page_fault()</code>进行修改，在 kill 时结束进程，返回 -1.</p>
-<h4 id=29-资源释放>
-2.9 资源释放
-<a class=anchor href=#29-%e8%b5%84%e6%ba%90%e9%87%8a%e6%94%be>#</a>
+<h4 id=资源释放>
+资源释放
+<a class=anchor href=#%e8%b5%84%e6%ba%90%e9%87%8a%e6%94%be>#</a>
 </h4>
 <table>
 <thead>
@@ -804,9 +817,9 @@ Project 2: User Programs
 <li>疯狂打开文件指定不能打开或打开超过了 126 个文件</li>
 <li>从 <code>bad-write</code>、<code>bad-read</code>、<code>bad-write2</code>、<code>bad-read2</code>、<code>open-bad-ptr</code> 中随机选择一种方式来触发异常然后退出</li>
 </ul>
-<h4 id=210-文件系统>
-2.10 文件系统
-<a class=anchor href=#210-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f>#</a>
+<h4 id=文件系统>
+文件系统
+<a class=anchor href=#%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f>#</a>
 </h4>
 <table>
 <thead>
@@ -888,7 +901,7 @@ Project 2: User Programs
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/bb47d7275b74752d0769bba9c5e111a60e48fb2b title="Last modified by Yinghao Zhu | November 14, 2021" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/509f4e3d10a3260521ea1ea619f00cceced76122 title="Last modified by Yinghao Zhu | November 14, 2021" target=_blank rel=noopener>
 <img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
 <span>November 14, 2021</span>
 </a>
@@ -918,7 +931,20 @@ Project 2: User Programs
 <ul>
 <li><a href=#前置任务打印进程退出信息>前置任务：打印进程退出信息</a></li>
 <li><a href=#任务-1进程参数>任务 1：进程参数</a></li>
-<li><a href=#任务-2系统调用>任务 2：系统调用</a></li>
+<li><a href=#任务-2系统调用>任务 2：系统调用</a>
+<ul>
+<li><a href=#调用参数所处内存地址>调用参数所处内存地址</a></li>
+<li><a href=#打开关闭文件>打开关闭文件</a></li>
+<li><a href=#创建移除文件>创建移除文件</a></li>
+<li><a href=#读写文件>读写文件</a></li>
+<li><a href=#执行与等待>执行与等待</a></li>
+<li><a href=#multi>multi</a></li>
+<li><a href=#rox>rox</a></li>
+<li><a href=#bad>bad</a></li>
+<li><a href=#资源释放>资源释放</a></li>
+<li><a href=#文件系统>文件系统</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
