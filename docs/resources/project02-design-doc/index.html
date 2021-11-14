@@ -1,0 +1,351 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Project 2 Design Document #  QUESTION 1: ARGUMENT PASSING #  DATA STRUCTURES #   A1: Copy here the declaration of each new or changed struct or struct member, global or static variable, typedef, or enumeration. Identify the purpose of each in 25 words or less.
+ ALGORITHMS #   A2: Briefly describe how you implemented argument parsing. How do you arrange for the elements of argv[] to be in the right order?">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Project 2 DesignDoc 模板">
+<meta property="og:description" content="Project 2 Design Document #  QUESTION 1: ARGUMENT PASSING #  DATA STRUCTURES #   A1: Copy here the declaration of each new or changed struct or struct member, global or static variable, typedef, or enumeration. Identify the purpose of each in 25 words or less.
+ ALGORITHMS #   A2: Briefly describe how you implemented argument parsing. How do you arrange for the elements of argv[] to be in the right order?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/resources/project02-design-doc/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2021-11-14T13:14:10+08:00">
+<title>Project 2 DesignDoc 模板 | OS Pintos Labs</title>
+<link rel=manifest href=/os-labs/manifest.json>
+<link rel=icon href=/os-labs/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
+<script defer src=/os-labs/flexsearch.min.js></script>
+<script defer src=/os-labs/en.search.min.7a320bd96734a1c04a79e65cede4e0339efdad36804c4b32d73fb9bfc6f91642.js integrity="sha256-ejIL2Wc0ocBKeeZc7eTgM579rTaATEsy1z+5v8b5FkI=" crossorigin=anonymous></script>
+<script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/os-labs/><span>OS Pintos Labs</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/>Table of Contents</a>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/ps0/>Problem Set 0</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p1/>Project 1</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/>Resources</a>
+<ul>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/weekly-meeting-report/>周例会报告模板</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/install-pintos/>Pintos 环境搭建</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/doc-template/>实验文档模板</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/project01-design-doc/>Project 1 DesignDoc 模板</a>
+</li>
+<li>
+<a href=https://buaa-se-2021.github.io/os-labs/docs/resources/project02-design-doc/ class=active>Project 2 DesignDoc 模板</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/BUAA-SE-2021/os-labs target=_blank rel=noopener>
+Github
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/os-labs/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Project 2 DesignDoc 模板</strong>
+<label for=toc-control>
+<img src=/os-labs/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#project-2-design-document>Project 2 Design Document</a>
+<ul>
+<li><a href=#question-1-argument-passing>QUESTION 1: ARGUMENT PASSING</a>
+<ul>
+<li><a href=#data-structures>DATA STRUCTURES</a></li>
+<li><a href=#algorithms>ALGORITHMS</a></li>
+<li><a href=#rationale>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#question-2-system-calls>QUESTION 2: SYSTEM CALLS</a>
+<ul>
+<li><a href=#data-structures-1>DATA STRUCTURES</a></li>
+<li><a href=#algorithms-1>ALGORITHMS</a></li>
+<li><a href=#synchronization>SYNCHRONIZATION</a></li>
+<li><a href=#rationale-1>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#空白模板>空白模板</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=project-2-design-document>
+Project 2 Design Document
+<a class=anchor href=#project-2-design-document>#</a>
+</h1>
+<h2 id=question-1-argument-passing>
+QUESTION 1: ARGUMENT PASSING
+<a class=anchor href=#question-1-argument-passing>#</a>
+</h2>
+<h3 id=data-structures>
+DATA STRUCTURES
+<a class=anchor href=#data-structures>#</a>
+</h3>
+<blockquote>
+<p>A1: Copy here the declaration of each new or changed <code>struct</code> or <code>struct</code> member, global or static variable, <code>typedef</code>, or enumeration. Identify the purpose of each in 25 words or less.</p>
+</blockquote>
+<h3 id=algorithms>
+ALGORITHMS
+<a class=anchor href=#algorithms>#</a>
+</h3>
+<blockquote>
+<p>A2: Briefly describe how you implemented argument parsing. How do you arrange for the elements of argv[] to be in the right order? How do you avoid overflowing the stack page?</p>
+<p>A2: 简要描述你是怎么实现 Argument parsing 的。你是如何安排 argv[]中的 elements，使其在正确的顺序的？你是如何避免 stack page 的溢出的？</p>
+</blockquote>
+<h3 id=rationale>
+RATIONALE
+<a class=anchor href=#rationale>#</a>
+</h3>
+<blockquote>
+<p>A3: Why does Pintos implement strtok_r() but not strtok()?</p>
+<p>A3: 为什么 Pintos 中实现 strtok_r()而不是 strtok()？</p>
+</blockquote>
+<blockquote>
+<p>A4: In Pintos, the kernel separates commands into a executable name and arguments. In Unix-like systems, the shell does this separation. Identify at least two advantages of the Unix approach.</p>
+<p>A4: 在 Pintos 中，kernel 将命令分成了可执行文件的 name 以及参数。在 Unix-like 的系统中，shell 完成这部分的分隔。列举至少 2 种 Unix 这样做的好处。</p>
+</blockquote>
+<h2 id=question-2-system-calls>
+QUESTION 2: SYSTEM CALLS
+<a class=anchor href=#question-2-system-calls>#</a>
+</h2>
+<h3 id=data-structures-1>
+DATA STRUCTURES
+<a class=anchor href=#data-structures-1>#</a>
+</h3>
+<blockquote>
+<p>B1: Copy here the declaration of each new or changed <code>struct</code> or <code>struct</code> member, global or static variable, <code>typedef</code>, or enumeration. Identify the purpose of each in 25 words or less.</p>
+</blockquote>
+<blockquote>
+<p>B2: Describe how file descriptors are associated with open files. Are file descriptors unique within the entire OS or just within a single process?</p>
+<p>B2: 描述文件描述符是如何与打开文件相联系的。文件描述符是在整个中唯一还是仅在单个进程中唯一？</p>
+</blockquote>
+<h3 id=algorithms-1>
+ALGORITHMS
+<a class=anchor href=#algorithms-1>#</a>
+</h3>
+<blockquote>
+<p>B3: Describe your code for reading and writing user data from the kernel.</p>
+<p>B3: 描述你用来从 kernel 中读写文件的代码。</p>
+</blockquote>
+<blockquote>
+<p>B4: Suppose a system call causes a full page (4,096 bytes) of data to be copied from user space into the kernel. What is the least and the greatest possible number of inspections of the page table (e.g. calls to pagedir_get_page()) that might result? What about for a system call that only copies 2 bytes of data? Is there room for improvement in these numbers, and how much?</p>
+<p>B4: 假设一个系统调用造成一整页的数据(4096 bytes)从用户空间复制到 kernel。</p>
+<p>求可能造成的最小和最大的页表的检查次数。(e.g. 对 pagedir_get_page()的调用)。如果系统调用只 copy 了 2 bytes 的数据呢？还有没有空间优化？可以优化多少？</p>
+</blockquote>
+<blockquote>
+<p>B5: Briefly describe your implementation of the &ldquo;wait&rdquo; system call and how it interacts with process termination.</p>
+<p>B5: 简要描述你"wait"系统调用的实现以及它是如何与进程停止交互的。</p>
+</blockquote>
+<blockquote>
+<p>B6: Any access to user program memory at a user-specified address can fail due to a bad pointer value. Such accesses must cause the process to be terminated. System calls are fraught with such accesses, e.g. a &ldquo;write&rdquo; system call requires reading the system call number from the user stack, then each of the call&rsquo;s three arguments, then an arbitrary amount of user memory, and any of these can fail at any point. This poses a design and error-handling problem: how do you best avoid obscuring the primary function of code in a morass of error-handling? Furthermore, when an error is detected, how do you ensure that all temporarily allocated resources (locks, buffers, etc.) are freed? In a few paragraphs, describe the strategy or strategies you adopted for managing these issues. Give an example.</p>
+<p>任何在用户指定的地址上对用户程序的内存的访问可能因为指针错误而失败。此类访问一定导致进程终止。系统调用充满了这样的访问。如一个“写”系统调用需要先从用户栈中读系统调用号，然后每一个调用的 3 个参数，然后是任意数量的用户内存。任何这些都可能造成失败。这构成一个设计错误处理的问题：如何最好地避免混淆主要错误处理的烦恼？此外，当错误被检查到，你如何保证所有的临时开出的资源（锁、缓冲区等）都被释放？用几段话来描述你处理这些问题的策略。</p>
+</blockquote>
+<h3 id=synchronization>
+SYNCHRONIZATION
+<a class=anchor href=#synchronization>#</a>
+</h3>
+<blockquote>
+<p>B7: The &ldquo;exec&rdquo; system call returns -1 if loading the new executable fails, so it cannot return before the new executable has completed loading. How does your code ensure this? How is the load success/failure status passed back to the thread that calls &ldquo;exec&rdquo;?</p>
+<p>B7: 如果新的可执行文件加载失败，&ldquo;exec"系统调用会返回-1，所以它不能够在该新的可执行文件成功加载之前返回。你的代码是如何保证这一点的？加载成功/失败的状态是如何传递回调用"exec"的线程的？</p>
+</blockquote>
+<blockquote>
+<p>B8: Consider parent process P with child process C. How do you ensure proper synchronization and avoid race conditions when P calls wait(C) before C exits? After C exits? How do you ensure that all resources are freed in each case? How about when P terminates without waiting, before C exits? After C exits? Are there any special cases?</p>
+<p>B8: 考虑有父进程 P 和它的子进程 C。当 P 在 C exit 之前调用 wait(C)时，你如何确保同步以及如何避免争用的情况？你如何确保在每种情况下，所有的资源都被释放？如果 P 在 C exit 之前，没有 waiting 便终止？如果在 C exit 之后？有什么特殊情况吗？</p>
+</blockquote>
+<h3 id=rationale-1>
+RATIONALE
+<a class=anchor href=#rationale-1>#</a>
+</h3>
+<blockquote>
+<p>B9: Why did you choose to implement access to user memory from the kernel in the way that you did?</p>
+<p>B9: 为什么你使用这种方式来实现从内核对用户内存的访问？</p>
+</blockquote>
+<blockquote>
+<p>B10: What advantages or disadvantages can you see to your design for file descriptors?</p>
+<p>B10: 你对文件描述符的设计有什么优劣吗？</p>
+</blockquote>
+<blockquote>
+<p>B11: The default tid_t to pid_t mapping is the identity mapping. If you changed it, what advantages are there to your approach?</p>
+<p>B11: 默认的 tid_t 到 pid_t 的映射是 identity mapping。如果你进行了更改，那么你的方法有什么优点？</p>
+</blockquote>
+<h2 id=空白模板>
+空白模板
+<a class=anchor href=#%e7%a9%ba%e7%99%bd%e6%a8%a1%e6%9d%bf>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown># Project 2 Design Document
+
+<span style=color:#75715e>## QUESTION 1: ARGUMENT PASSING
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### DATA STRUCTURES
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### ALGORITHMS
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A2: Briefly describe how you implemented argument parsing. How do you arrange for the elements of argv[] to be in the right order? How do you avoid overflowing the stack page?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; A2: 简要描述你是怎么实现 Argument parsing 的。你是如何安排 argv[]中的 elements，使其在正确的顺序的？你是如何避免 stack page 的溢出的？
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### RATIONALE
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A3: Why does Pintos implement strtok_r() but not strtok()?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; A3: 为什么 Pintos 中实现 strtok_r()而不是 strtok()？
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>A4: In Pintos, the kernel separates commands into a executable name and arguments. In Unix-like systems, the shell does this separation. Identify at least two advantages of the Unix approach.
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; A4: 在 Pintos 中，kernel 将命令分成了可执行文件的 name 以及参数。在 Unix-like 的系统中，shell 完成这部分的分隔。列举至少 2 种 Unix 这样做的好处。
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>## QUESTION 2: SYSTEM CALLS
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>### DATA STRUCTURES
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B1: Copy here the declaration of each new or changed `struct` or `struct` member, global or static variable, `typedef`, or enumeration. Identify the purpose of each in 25 words or less.
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B2: Describe how file descriptors are associated with open files. Are file descriptors unique within the entire OS or just within a single process?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B2: 描述文件描述符是如何与打开文件相联系的。文件描述符是在整个中唯一还是仅在单个进程中唯一？
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### ALGORITHMS
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B3: Describe your code for reading and writing user data from the kernel.
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B3: 描述你用来从 kernel 中读写文件的代码。
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B4: Suppose a system call causes a full page (4,096 bytes) of data to be copied from user space into the kernel. What is the least and the greatest possible number of inspections of the page table (e.g. calls to pagedir_get_page()) that might result? What about for a system call that only copies 2 bytes of data? Is there room for improvement in these numbers, and how much?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B4: 假设一个系统调用造成一整页的数据(4096 bytes)从用户空间复制到 kernel。
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; 求可能造成的最小和最大的页表的检查次数。(e.g. 对 pagedir_get_page()的调用)。如果系统调用只 copy 了 2 bytes 的数据呢？还有没有空间优化？可以优化多少？
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B5: Briefly describe your implementation of the &#34;wait&#34; system call and how it interacts with process termination.
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B5: 简要描述你&#34;wait&#34;系统调用的实现以及它是如何与进程停止交互的。
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B6: Any access to user program memory at a user-specified address can fail due to a bad pointer value. Such accesses must cause the process to be terminated. System calls are fraught with such accesses, e.g. a &#34;write&#34; system call requires reading the system call number from the user stack, then each of the call&#39;s three arguments, then an arbitrary amount of user memory, and any of these can fail at any point. This poses a design and error-handling problem: how do you best avoid obscuring the primary function of code in a morass of error-handling? Furthermore, when an error is detected, how do you ensure that all temporarily allocated resources (locks, buffers, etc.) are freed? In a few paragraphs, describe the strategy or strategies you adopted for managing these issues. Give an example.
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; 任何在用户指定的地址上对用户程序的内存的访问可能因为指针错误而失败。此类访问一定导致进程终止。系统调用充满了这样的访问。如一个“写”系统调用需要先从用户栈中读系统调用号，然后每一个调用的 3 个参数，然后是任意数量的用户内存。任何这些都可能造成失败。这构成一个设计错误处理的问题：如何最好地避免混淆主要错误处理的烦恼？此外，当错误被检查到，你如何保证所有的临时开出的资源（锁、缓冲区等）都被释放？用几段话来描述你处理这些问题的策略。
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### SYNCHRONIZATION
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B7: The &#34;exec&#34; system call returns -1 if loading the new executable fails, so it cannot return before the new executable has completed loading. How does your code ensure this? How is the load success/failure status passed back to the thread that calls &#34;exec&#34;?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B7: 如果新的可执行文件加载失败，&#34;exec&#34;系统调用会返回-1，所以它不能够在该新的可执行文件成功加载之前返回。你的代码是如何保证这一点的？加载成功/失败的状态是如何传递回调用&#34;exec&#34;的线程的？
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B8: Consider parent process P with child process C. How do you ensure proper synchronization and avoid race conditions when P calls wait(C) before C exits? After C exits? How do you ensure that all resources are freed in each case? How about when P terminates without waiting, before C exits? After C exits? Are there any special cases?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B8: 考虑有父进程 P 和它的子进程 C。当 P 在 C exit 之前调用 wait(C)时，你如何确保同步以及如何避免争用的情况？你如何确保在每种情况下，所有的资源都被释放？如果 P 在 C exit 之前，没有 waiting 便终止？如果在 C exit 之后？有什么特殊情况吗？
+</span><span style=font-style:italic></span>
+<span style=color:#75715e>### RATIONALE
+</span><span style=color:#75715e></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B9: Why did you choose to implement access to user memory from the kernel in the way that you did?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B9: 为什么你使用这种方式来实现从内核对用户内存的访问？
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B10: What advantages or disadvantages can you see to your design for file descriptors?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B10: 你对文件描述符的设计有什么优劣吗？
+</span><span style=font-style:italic></span><span style=color:#66d9ef>
+</span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>B11: The default tid_t to pid_t mapping is the identity mapping. If you changed it, what advantages are there to your approach?
+</span><span style=font-style:italic></span><span style=color:#66d9ef>&gt;
+</span><span style=color:#66d9ef></span><span style=font-style:italic>&gt; B11: 默认的 tid_t 到 pid_t 的映射是 identity mapping。如果你进行了更改，那么你的方法有什么优点？
+</span></code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/ab43db373cae5335799b8fb740c6a3514b884d95 title="Last modified by Yinghao Zhu | November 14, 2021" target=_blank rel=noopener>
+<img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
+<span>November 14, 2021</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/edit/main/exampleSite/content/docs/resources/project02-design-doc.md target=_blank rel=noopener>
+<img src=/os-labs/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#project-2-design-document>Project 2 Design Document</a>
+<ul>
+<li><a href=#question-1-argument-passing>QUESTION 1: ARGUMENT PASSING</a>
+<ul>
+<li><a href=#data-structures>DATA STRUCTURES</a></li>
+<li><a href=#algorithms>ALGORITHMS</a></li>
+<li><a href=#rationale>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#question-2-system-calls>QUESTION 2: SYSTEM CALLS</a>
+<ul>
+<li><a href=#data-structures-1>DATA STRUCTURES</a></li>
+<li><a href=#algorithms-1>ALGORITHMS</a></li>
+<li><a href=#synchronization>SYNCHRONIZATION</a></li>
+<li><a href=#rationale-1>RATIONALE</a></li>
+</ul>
+</li>
+<li><a href=#空白模板>空白模板</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
