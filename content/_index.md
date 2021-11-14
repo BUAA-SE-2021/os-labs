@@ -11,7 +11,7 @@ type: docs
 
 - [x] [Problem Set 0: Synchronization](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/problemSet0.php) 单人，必做，10 月 14 日 23：00 前提交（任老师班是 0 点，为防止云平台卡住，原老师班特提早一小时，下同）
 - [x] [Project 1: Threads](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，11 月 11 日 23：00 前提交
-- [x] [Project 2: User Programs](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，暂定 12 月 14 日 23：00 前提交
+- [x] [Project 2: User Programs](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，12 月 9 日 23：00 前提交
 - [ ] [Project 3: Virtual Memory](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，选做，暂定 12 月 14 日 23：00 前提交
 - [ ] [Project 4: File Systems](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 没要求
 
