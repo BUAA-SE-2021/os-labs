@@ -18,13 +18,13 @@
 由于技术的进步以及人们对多用户操作同一台电脑的需求，在 80386 时代，终于将系统的工作方式给分离了，80386 具有实模式、保护模式和 v68 模式这三种工作模式。其中，实模式其实算是 8086 体系的延续，在该模式下的寻址方式和 8086 无异，这个模式也是为了兼容 16 位体系下的程序。而用户一般所处的状态就是保护模式，在这个模式下可以使用 386 系统的 32 根主线，寻址模式发生根本性的变化，最主要的是引入了特权级的概念，由于我们知道在 8086 时代，随意的内存修改可能导致系统崩溃，而想要避免这种崩溃，就需要把系统内核给保护起来，为此，386 有个 4 个特权级 r0-3，我们的系统内核在最高级别 r0 中，特权级所处的内存空间分置，允许高特权级访问低特权级内存空间，而不允许反向地访问。那么这样一来，确实避免了随意对内存空间的修改，可又引出了一些新的问题，比如系统对外设端口的调用，是通过中断的方式进行的；比如创建新的进程等，这些函数都被内核给把持着，当一个用户想要手动开启这些功能的时候，就遇到了无法访问的问题，这个时候，就需要让低特权级向高特权级发起一个建议，这个建议我们把他叫做系统调用，使用系统调用，就可以让用户在低特权级下使用高特权级的功能。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p2/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2021-11-14T14:21:19+08:00">
+<meta property="article:modified_time" content="2021-11-15T23:31:00+08:00">
 <title>Project 2 | OS Pintos Labs</title>
 <link rel=manifest href=/os-labs/manifest.json>
 <link rel=icon href=/os-labs/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/os-labs/flexsearch.min.js></script>
-<script defer src=/os-labs/en.search.min.7c55cd7c121bd1d56d2001f58dd252d03bd28073b4242de5b834dc249f53ddbd.js integrity="sha256-fFXNfBIb0dVtIAH1jdJS0DvSgHO0JC3luDTcJJ9T3b0=" crossorigin=anonymous></script>
+<script defer src=/os-labs/en.search.min.663c74877d33cd6a9259d4051cc5b312616e246a5faf92f62e66a73465f8aff5.js integrity="sha256-Zjx0h30zzWqSWdQFHMWzEmFuJGpfr5L2LmanNGX4r/U=" crossorigin=anonymous></script>
 <script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -111,7 +111,7 @@ Github
 <li><a href=#实验思路讲解>实验思路讲解</a>
 <ul>
 <li><a href=#前置任务打印进程退出信息>前置任务：打印进程退出信息</a></li>
-<li><a href=#任务-1进程参数>任务 1：进程参数</a></li>
+<li><a href=#任务-1参数分离>任务 1：参数分离</a></li>
 <li><a href=#任务-2系统调用>任务 2：系统调用</a>
 <ul>
 <li><a href=#调用参数所处内存地址>调用参数所处内存地址</a></li>
@@ -158,37 +158,80 @@ Project 2: User Programs
 实验思路讲解
 <a class=anchor href=#%e5%ae%9e%e9%aa%8c%e6%80%9d%e8%b7%af%e8%ae%b2%e8%a7%a3>#</a>
 </h2>
-<p>大部分思路可以参照官方文档中的
-<a href=http://web.stanford.edu/class/cs140/projects/pintos/pintos_3.html#SEC40>3.2 章节</a>。</p>
-<p>在本次实验中，我们需要完成 10 余个系统调用的实现。首先系统调用本质上会落实到函数中，函数需要有参数，而通过计组的学习，我们已经知道，这些参数被放在栈中，当 <code>eip</code> 执行到 <code>call</code> 指令时，会将当前栈顶地址压栈，再将栈底地址赋值给栈顶，而这个时候，参数就被存放在栈底之下。我们的 Pintos 实际上也是类似的操作。</p>
-<p>为了让参数的传递不发生错误，我们首先需要在 <code>process.c</code> 中修改 <code>setup_stack</code> 函数中 <code>*esp = PHYS_BASE</code> 为 <code>*esp = PHYS_BASE-12</code> 。这一步修改的原因会在后续步骤中讲到。</p>
-<p>本实验目标是实现系统调用，所以大部分代码都完成在 <code>syscall</code> 函数中，可以看到源代码给了我们一个 <code>syscall_handler</code> 的框架，我们可以在这里将官方文档 3.3.4 中提及的系统调用函数框架搭在这里。</p>
-<p>要想执行系统调用，肯定需要参数，前面已经提及，参数被存放在了栈底之下，而在 Pintos 中，这个存放的位置在指针 <code>esp</code> 下，我们通过 <code>syscall</code> 的参数 <code>f</code> 这个栈帧，可以取得对应 <code>esp</code> 指针的值。栈帧 <code>f</code> 是一个名为 <code>intr_frame</code> 的结构，可以在 <code>threads/interrupt.h</code> 文件中找到，从名字我们就可以看出，这是中断时保存的现场，其内部定义了 32 位机器常用的 8 大寄存器的值。<code>esp</code> 就是其中之一。Pintos 文档约定参数最多不超过 3 个，所以由此，我们就可以写出从 <code>esp</code> 位置，获取到参数的函数。</p>
-<p>获取完参数，我们就可以正式开始实现系统调用。</p>
-<p>从官方文档 3.3.4 中，我们可以看到需要完成的所有系统调用，以及其需要的参数格式，包括其实现方式。</p>
-<p>例如第一个 <code>halt()</code> 系统调用，起终止 Pintos 系统的功能，只需要调用 <code>threads/init.h</code> 中的 <code>shutdown_power_off</code> 函数，实现模拟断电即可。</p>
-<p>第二个函数 <code>exit(int status)</code>，需要一个返回码的参数，我们都知道，返回码标志着函数进程的退出状态，是否正常退出，这个值最终由父进程回收。我们实现时，只需要从 <code>esp</code> 附近取得这个值，并传递给处理函数即可。</p>
-<p>为了验证我们是否成功完成这一系列操作，下一步可以先行实现 <code>write</code> 函数的一部分，即向控制台输出内容，还是根据 3.3.4 的文件内容，我们可以了解到调用 <code>putbuf</code> 函数，即可将内容写入缓冲区，最终输出到控制台，该函数被定义在 <code>lib/kernel/console.c</code> 中，同时当参数 <code>fd</code> 为 1 时，表示需要向控制台输出。<code>write</code> 函数与前两者不一样的是，它需要一个返回值来标志写入的个数，我们需要设计函数的返回值，并将其写入栈帧的 <code>eax</code> 中。</p>
-<p>到这里，我们就可以开始尝试过点了，但为了防止 Pintos 的主进程在测试进程结束前就关机，（因为还没有实现 <code>wait</code> 做到父进程等待子进程）所以我们可以在 <code>userprog/process.c</code> 中，将 <code>process_wait</code> 添加一个 <code>sleep</code> 语句，以保证子进程顺利结束。</p>
-<p>完成了这些，就可以运行 <code>make check</code>，检查第一个测试用例是否有输出，如果有的话，说明前期的准备都做对了，可以开始一个一个实现系统调用了。</p>
-<p>在过点的过程中，大家可以尝试查看测试用例的源代码，以此来获取这些测试用例分别是对应什么系统实现。</p>
-<p>我们开始分任务讲解。</p>
-<p><strong>开始前的准备</strong></p>
-<p>按照实验思路的顺序，</p>
-<p>1.首先需要在 <code>process.c</code> 中修改 <code>setup_stack</code> 函数中 <code>*esp = PHYS_BASE</code> 为 <code>*esp = PHYS_BASE-12</code> 。这一步是为了人为给系统调用参数留下空间，防止访问越界。</p>
-<p>2.其次是搭建框架，在 <code>syscall.c</code> 函数中，我们可以为 10 余个系统调用搭建框架，以便于以后直接修改函数就能完成。</p>
-<p>3.获取参数，我们在系统调用时，需要取得用户传入的参数，我们通过 <code>syscall</code> 的参数 <code>f</code> 这个栈帧，可以取得对应 <code>esp</code> 指针的值。参数就存放在这里，同时数量也可以被设置为一个参数，幸运的是，Pintos 系统调用约定参数不超过 3 个。</p>
-<p>4.实现简单的 <code>exit</code>，为了能让进程顺利结束，肯定需要先完成退出，我们在 <code>syscall.c</code> 中，只需要调用 <code>thread_exit()</code>; 就可以实现简单的退出。</p>
-<p>5.向 console 打印信息，测试点的输出结果是靠用户调用 <code>write</code> 这一系统调用完成的，所以想要成功获得过点情况，就需要先实现一部分 <code>write</code> 调用。根据 3.3.4 的文件内容，我们可以了解到调用 <code>putbuf</code> 函数，即可将内容写入缓冲区，最终输出到控制台，该函数被定义在 <code>lib/kernel/console.c</code> 中，同时当参数 <code>fd</code> 为 1 时，表示需要向控制台输出。<code>write</code> 函数与前两者不一样的是，它需要一个返回值来标志写入的个数，我们需要设计函数的返回值，并将其写入栈帧的 <code>eax</code> 中。</p>
-<p>6.防止 <code>wait</code> 的立即结束。为了防止 Pintos 的主进程在测试进程结束前就关机，（因为还没有实现 <code>wait</code> 做到父进程等待子进程）所以我们可以在 <code>userprog/process.c</code> 中，将 <code>process_wait</code> 添加一个 <code>sleep</code> 语句，以保证子进程顺利结束。</p>
+<p>在本次实验的主线是实现 13 个系统调用，我们可以大致将这 13 个系统调用分为两部分：与进程有关的（<code>exec</code>, <code>wait</code>, <code>exit</code>）系统调用和其他系统调用。</p>
+<p>与进程相关的系统调用实现会略为复杂：</p>
+<ul>
+<li><code>exec</code> 中需要我们实现参数的分离与传递</li>
+<li><code>wait</code> 中需要我们实现进程之间的等待，并能够处理异常输入</li>
+<li><code>exit</code> 中需要我们能够完整的回收进程所使用的资源。</li>
+</ul>
+<p>其中，<code>exec</code> 单独作为 任务1 参数分离出现，任务2 则是要完成全部 13 个系统调用</p>
+<p><strong>对于栈区的理解</strong> ->
+<a href=http://web.stanford.edu/class/cs140/projects/pintos/pintos_3.html#SEC50>拓展阅读</a></p>
+<p>PintOS 中使用了与 8086处理器 相同的函数调用规则：</p>
+<ol>
+<li>
+<p>调用者需要先将函数所需的参数按照从右到左的顺序依次入栈（堆栈是向下增长的，用 C 语言的形式来描述，每一次入栈操作都形同于 <code>*--sp = value</code>）</p>
+</li>
+<li>
+<p>调用者使用 call 指令完成如下两件事：</p>
+<ol>
+<li>
+<p>将调用者的下一条指令地址入栈 （<code>return address</code>）</p>
+</li>
+<li>
+<p>将指令寄存器指向被调用者的第一条指令</p>
+</li>
+</ol>
+</li>
+<li>
+<p>被调用者执行时，栈寄存器指向的是 <code>return address</code>。</p>
+</li>
+<li>
+<p>如果被调用者有返回值，将会存至寄存器 <code>eax</code> 中</p>
+</li>
+<li>
+<p>返回时，被调用者使用 <code>ret</code> 指令完成如下两件事：</p>
+<ol>
+<li>
+<p>将返回地址出栈</p>
+</li>
+<li>
+<p>将指令寄存器指向刚出栈的地址。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>返回后，调用者将参数依次从栈中弹出，继续运行。</p>
+</li>
+</ol>
+<p>在实验过程中，我们将在两个地方考察对栈的理解：</p>
+<ol>
+<li>系统调用本身也可以理解为一次函数调用，我们需要通过栈寄存器 <code>esp</code> 获得系统调用的参数</li>
+<li>在系统调用 <code>exec</code> 中，PintOS 将通过模拟 <code>ret</code> 指令来运行用户程序并给用户程序传递参数，为此，我们需要在返回之前，将栈区模拟为即将返回的状态（即当前的栈寄存器指向 return address，其上包含用户程序的全部参数。）</li>
+</ol>
+<p><strong>评测的一些细节</strong></p>
+<p>在评测的过程中，实际上是运行了一个用户程序(userprog)，并通过用户程序的输出来判断测试点是否通过。因此，在实现 <code>exec</code> , <code>write</code> 等系统调用之前，是无法正常评测的。</p>
+<p>为了能够帮助大家更快的上手 Project2 ，这里提供一个实现参考顺序：</p>
+<ol>
+<li>
+<p>在 <code>setup_stack()</code> 函数中，令 <code>*esp = PHYS_BASE - 12 </code> ，这一步实际上是放弃了参数的传递（减去的 12 其实分别对应 <code>argv</code> , <code>argc</code> ，<code>return address</code> ），这样可以让我们的 OS 能够执行不含参数的测试点。</p>
+</li>
+<li>
+<p>搭建系统调用的框架并实现 <code>exit</code> 和 <code>write</code> 调用，让用户程序可以正常的输出字符串并退出。随后，在 <code>process_wait</code> 中额外增加一句 <code>sleep</code> 确保会在子线程执行结束后返回（正确的实现方式是在子线程结束后立即返回，这里为了确保子线程结束，请把 <code>sleep</code> 等待的时间写的稍微长一点）</p>
+<blockquote>
+<p>其实只要实现 fd=1 时的 write 函数就已经可以让用户程序输出了。在这里可以选择只实现这一部分的 write，完整版的 write 在写完参数传递后在接着完成。</p>
+</blockquote>
+</li>
+</ol>
 <h3 id=前置任务打印进程退出信息>
 前置任务：打印进程退出信息
 <a class=anchor href=#%e5%89%8d%e7%bd%ae%e4%bb%bb%e5%8a%a1%e6%89%93%e5%8d%b0%e8%bf%9b%e7%a8%8b%e9%80%80%e5%87%ba%e4%bf%a1%e6%81%af>#</a>
 </h3>
 <p>Pintos 要求每一次退出时都打印退出代码，没有这个打印行为，几乎所有的点都无法通过，但其本身没有点。首先我们需要在 <code>threads/thread.h</code> 函数中修改 <code>thread</code> 结构体，为其添加退出码这个值，其次我们在系统调用 <code>exit</code> 时，需要将退出码存储在结构体中，最后在 <code>userprog/process.c</code> 中 <code>process_exit()</code> 函数中按文档所给的格式（见 3.3.2）打印退出码。（这里需要解释一点，Pintos 实验做到这里时，仍没有区分线程和进程的概念，一定程度上可以混用）。</p>
-<h3 id=任务-1进程参数>
-任务 1：进程参数
-<a class=anchor href=#%e4%bb%bb%e5%8a%a1-1%e8%bf%9b%e7%a8%8b%e5%8f%82%e6%95%b0>#</a>
+<h3 id=任务-1参数分离>
+任务 1：参数分离
+<a class=anchor href=#%e4%bb%bb%e5%8a%a1-1%e5%8f%82%e6%95%b0%e5%88%86%e7%a6%bb>#</a>
 </h3>
 <table>
 <thead>
@@ -320,9 +363,6 @@ Project 2: User Programs
 </tbody>
 </table>
 <p>同学们可参照压栈图，将分割出的参数压栈到中断现场的合适位置。</p>
-<p><strong>Tip 1：</strong></p>
-<p>如果在实现该部分过程中，传递的参数始终有问题，请注意分割 <code>fn_copy</code> 的位置和传递给 <code>start_process</code> 的顺序，或者每次使用时，都重新 <code>memcpy</code> 拷贝一份，以防止修改到原始的数据。</p>
-<p>做到这里，还记得我们前面的 <code>*esp = PHYS_BASE-12;</code> 吗？这个时候已经处理好压栈，就可以删去 <code>-12</code> 了。现在明白为什么要 <code>-12</code> 了吗？是为了防止在为传递参数的时候，错误地移动指针，访问到不应该访问或修改的内存值。</p>
 <h3 id=任务-2系统调用>
 任务 2：系统调用
 <a class=anchor href=#%e4%bb%bb%e5%8a%a1-2%e7%b3%bb%e7%bb%9f%e8%b0%83%e7%94%a8>#</a>
@@ -901,9 +941,9 @@ bad
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/509f4e3d10a3260521ea1ea619f00cceced76122 title="Last modified by Yinghao Zhu | November 14, 2021" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/6970e3bee3ce3e4a2bcdf4b03147acf9494c964e title="Last modified by Withinlover | November 15, 2021" target=_blank rel=noopener>
 <img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
-<span>November 14, 2021</span>
+<span>November 15, 2021</span>
 </a>
 </div>
 <div>
@@ -930,7 +970,7 @@ bad
 <li><a href=#实验思路讲解>实验思路讲解</a>
 <ul>
 <li><a href=#前置任务打印进程退出信息>前置任务：打印进程退出信息</a></li>
-<li><a href=#任务-1进程参数>任务 1：进程参数</a></li>
+<li><a href=#任务-1参数分离>任务 1：参数分离</a></li>
 <li><a href=#任务-2系统调用>任务 2：系统调用</a>
 <ul>
 <li><a href=#调用参数所处内存地址>调用参数所处内存地址</a></li>
