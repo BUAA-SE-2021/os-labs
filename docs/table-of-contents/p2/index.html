@@ -18,13 +18,13 @@
 由于技术的进步以及人们对多用户操作同一台电脑的需求，在 80386 时代，终于将系统的工作方式给分离了，80386 具有实模式、保护模式和 v68 模式这三种工作模式。其中，实模式其实算是 8086 体系的延续，在该模式下的寻址方式和 8086 无异，这个模式也是为了兼容 16 位体系下的程序。而用户一般所处的状态就是保护模式，在这个模式下可以使用 386 系统的 32 根主线，寻址模式发生根本性的变化，最主要的是引入了特权级的概念，由于我们知道在 8086 时代，随意的内存修改可能导致系统崩溃，而想要避免这种崩溃，就需要把系统内核给保护起来，为此，386 有个 4 个特权级 r0-3，我们的系统内核在最高级别 r0 中，特权级所处的内存空间分置，允许高特权级访问低特权级内存空间，而不允许反向地访问。那么这样一来，确实避免了随意对内存空间的修改，可又引出了一些新的问题，比如系统对外设端口的调用，是通过中断的方式进行的；比如创建新的进程等，这些函数都被内核给把持着，当一个用户想要手动开启这些功能的时候，就遇到了无法访问的问题，这个时候，就需要让低特权级向高特权级发起一个建议，这个建议我们把他叫做系统调用，使用系统调用，就可以让用户在低特权级下使用高特权级的功能。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://buaa-se-2021.github.io/os-labs/docs/table-of-contents/p2/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2021-11-15T23:31:00+08:00">
+<meta property="article:modified_time" content="2021-11-25T13:41:06+08:00">
 <title>Project 2 | OS Pintos Labs</title>
 <link rel=manifest href=/os-labs/manifest.json>
 <link rel=icon href=/os-labs/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/os-labs/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/os-labs/flexsearch.min.js></script>
-<script defer src=/os-labs/en.search.min.02429581815cf549ae11070f769e962be4b126e27ecb5873e499ddfc8873ef8b.js integrity="sha256-AkKVgYFc9UmuEQcPdp6WK+SxJuJ+y1hz5Jnd/Ihz74s=" crossorigin=anonymous></script>
+<script defer src=/os-labs/en.search.min.ee9cae5fa23c1bc4a41adebe3ea0dc63d0b17d44808d6ffaff8b244df8646e12.js integrity="sha256-7pyuX6I8G8SkGt6+PqDcY9CxfUSAjW/6/4skTfhkbhI=" crossorigin=anonymous></script>
 <script defer src=/os-labs/sw.min.f3b6af0beade35f9c86f5d5b080c54bb4c91287aa795367fa753608e508ce5e4.js integrity="sha256-87avC+reNfnIb11bCAxUu0yRKHqnlTZ/p1NgjlCM5eQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -165,45 +165,27 @@ Project 2: User Programs
 <li><code>wait</code> 中需要我们实现进程之间的等待，并能够处理异常输入</li>
 <li><code>exit</code> 中需要我们能够完整的回收进程所使用的资源。</li>
 </ul>
-<p>其中，<code>exec</code> 单独作为 任务1 参数分离出现，任务2 则是要完成全部 13 个系统调用</p>
+<p>其中，<code>exec</code> 单独作为 任务 1 参数分离出现，任务 2 则是要完成全部 13 个系统调用</p>
 <p><strong>对于栈区的理解</strong> ->
 <a href=http://web.stanford.edu/class/cs140/projects/pintos/pintos_3.html#SEC50>拓展阅读</a></p>
-<p>PintOS 中使用了与 8086处理器 相同的函数调用规则：</p>
+<p>PintOS 中使用了与 8086 处理器 相同的函数调用规则：</p>
 <ol>
-<li>
-<p>调用者需要先将函数所需的参数按照从右到左的顺序依次入栈（堆栈是向下增长的，用 C 语言的形式来描述，每一次入栈操作都形同于 <code>*--sp = value</code>）</p>
+<li>调用者需要先将函数所需的参数按照从右到左的顺序依次入栈（堆栈是向下增长的，用 C 语言的形式来描述，每一次入栈操作都形同于 <code>*--sp = value</code>）</li>
+<li>调用者使用 call 指令完成如下两件事：
+<ul>
+<li>将调用者的下一条指令地址入栈 （<code>return address</code>）</li>
+<li>将指令寄存器指向被调用者的第一条指令</li>
+</ul>
 </li>
-<li>
-<p>调用者使用 call 指令完成如下两件事：</p>
-<ol>
-<li>
-<p>将调用者的下一条指令地址入栈 （<code>return address</code>）</p>
+<li>被调用者执行时，栈寄存器指向的是 <code>return address</code>。</li>
+<li>如果被调用者有返回值，将会存至寄存器 <code>eax</code> 中</li>
+<li>返回时，被调用者使用 <code>ret</code> 指令完成如下两件事：
+<ul>
+<li>将返回地址出栈</li>
+<li>将指令寄存器指向刚出栈的地址。</li>
+</ul>
 </li>
-<li>
-<p>将指令寄存器指向被调用者的第一条指令</p>
-</li>
-</ol>
-</li>
-<li>
-<p>被调用者执行时，栈寄存器指向的是 <code>return address</code>。</p>
-</li>
-<li>
-<p>如果被调用者有返回值，将会存至寄存器 <code>eax</code> 中</p>
-</li>
-<li>
-<p>返回时，被调用者使用 <code>ret</code> 指令完成如下两件事：</p>
-<ol>
-<li>
-<p>将返回地址出栈</p>
-</li>
-<li>
-<p>将指令寄存器指向刚出栈的地址。</p>
-</li>
-</ol>
-</li>
-<li>
-<p>返回后，调用者将参数依次从栈中弹出，继续运行。</p>
-</li>
+<li>返回后，调用者将参数依次从栈中弹出，继续运行。</li>
 </ol>
 <p>在实验过程中，我们将在两个地方考察对栈的理解：</p>
 <ol>
@@ -220,7 +202,7 @@ Project 2: User Programs
 <li>
 <p>搭建系统调用的框架并实现 <code>exit</code> 和 <code>write</code> 调用，让用户程序可以正常的输出字符串并退出。随后，在 <code>process_wait</code> 中额外增加一句 <code>sleep</code> 确保会在子线程执行结束后返回（正确的实现方式是在子线程结束后立即返回，这里为了确保子线程结束，请把 <code>sleep</code> 等待的时间写的稍微长一点）</p>
 <blockquote>
-<p>其实只要实现 fd=1 时的 write 函数就已经可以让用户程序输出了。在这里可以选择只实现这一部分的 write，完整版的 write 在写完参数传递后在接着完成。</p>
+<p>其实只要实现 <code>fd=1</code> 时的 <code>write</code> 函数就已经可以让用户程序输出了。在这里可以选择只实现这一部分的 <code>write</code>，完整版的 <code>write</code> 在写完参数传递后在接着完成。</p>
 </blockquote>
 </li>
 </ol>
@@ -671,7 +653,7 @@ Project 2: User Programs
 <tr>
 <td>45</td>
 <td>exec-multiple</td>
-<td><code>wait(exec(…)</code>)五次，观察退出代码以及退出顺序。</td>
+<td><code>wait(exec(…)</code> 五次，观察退出代码以及退出顺序。</td>
 </tr>
 <tr>
 <td>46</td>
@@ -941,9 +923,9 @@ bad
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/6970e3bee3ce3e4a2bcdf4b03147acf9494c964e title="Last modified by Withinlover | November 15, 2021" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/alex-shpak/hugo-book/commit/8ee3d5ea1e25f852dd0f7fb486af27becb8bf350 title="Last modified by Yinghao Zhu | November 25, 2021" target=_blank rel=noopener>
 <img src=/os-labs/svg/calendar.svg class=book-icon alt=Calendar>
-<span>November 15, 2021</span>
+<span>November 25, 2021</span>
 </a>
 </div>
 <div>
