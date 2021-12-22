@@ -12,7 +12,7 @@ type: docs
 - [x] [Problem Set 0: Synchronization](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/problemSet0.php) 单人，必做，10 月 14 日 23：00 前提交（任老师班是 0 点，为防止云平台卡住，原老师班特提早一小时，下同）
 - [x] [Project 1: Threads](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，11 月 11 日 23：00 前提交
 - [x] [Project 2: User Programs](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，必做，12 月 9 日 23：00 前提交
-- [ ] [Project 3: Virtual Memory](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，选做，12 月 22 日 23：00 前随申优答辩PPT一同提交
+- [ ] [Project 3: Virtual Memory](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 组队，选做，12 月 22 日 23：59 前随申优答辩PPT一同提交
 - [ ] [Project 4: File Systems](http://web.stanford.edu/~ouster/cgi-bin/cs140-spring20/pintosProjects.php) 没要求
 
 ### Problem Set 0: Synchronization
@@ -103,7 +103,7 @@ See the Pintos documentation for details on this project:
 - 正式实验从第 4 周开始。
 - 实验时间为每周四，原老师班的实验机房：（一）316，任老师班的实验机房：（一）215。
 - 每周实验有签到考察，每组成员没有特殊情况请假务必到场。
-- 实验课上机的最后一周组织申优答辩（12 月 23 日晚，地点待定），小组以 PPT 展示的形式总结实验，所有代码在截止日期前提交至云平台的作业中。
+- 实验课上机的最后一周组织申优答辩（12 月 23 日晚，地点为（五）205/217），小组以 PPT 展示的形式总结实验，所有代码在截止日期前提交至云平台的作业中。
 
 ## 助教联系方式
 
